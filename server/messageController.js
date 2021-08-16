@@ -4,8 +4,8 @@ const messageController = {};
 
 messageController.getMessages = async (req, res, next) => {
     try {
-        const messageDocs = await Message.find({});
-        res.locals.messages = messageDocs;
+        const messages = await Message.find({});
+        res.locals = { messages };
         return next();
     } catch (err) {
         return next({
