@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URI = 'mongodb+srv://selilac:1234@cluster0.hcthe.mongodb.net/periscope?retryWrites=true&w=majority';
-
+const MONGO_URI = 'mongodb://localhost:27017';
 mongoose.connect(MONGO_URI, {
   // options for the connect method to parse the URI
   useNewUrlParser: true,

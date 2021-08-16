@@ -11,7 +11,7 @@ messageController.getMessages = async (req, res, next) => {
         return next({
             log: `messageController.getMessages err: ${err}`,
             message: {
-                err: 'Err occored in message.Controller.getMessages',
+                err: 'Error occurred in message.Controller.getMessages',
             }
         })
     }
@@ -27,7 +27,7 @@ messageController.postMessage = async (req, res, next) => {
     return next({
       log: `messageController.postMessage err: ${err}`,
       message: {
-          err: 'Err occored in message.Controller.postMessage',
+          err: 'Error occurred in message.Controller.postMessage',
       }
     })
   }
