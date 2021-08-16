@@ -1,9 +1,10 @@
 import React from "react";
+import MainDisplay from "./containers/MainDisplay"
 
 const App = () => {
   return(
     <div>
-    <h1> Periscope is aliveee</h1>
+     <MainDisplay />
     </div>
   )
 }
