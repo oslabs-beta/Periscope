@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
-const messageController = require('.messageController');
+const messageController = require('./messageController');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,10 +15,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('/api', messageController.getMessages, (req, res) => {
-
+  return res.status(200).json(res.locals.messages);
 });
 app.post('/api', messageController.postMessage, (req, res) => {
-
+  return res.status(200).json(res.locals.newMessage);
 });
 
 app.use(function (err, req, res, next) {
