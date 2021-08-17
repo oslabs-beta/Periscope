@@ -1,7 +1,12 @@
 FROM node
+ENV NODE_ENV=production
 
-RUN mkdir -p /home/app
+WORKDIR /app
 
-COPY ./app /home/app
+COPY ["package.json", "package-lock.json*", "./"]
 
-CMD ["node", "/home/app/server/server.js"]
+RUN npm install --production
+
+COPY . .
+
+CMD [ "node", "server.js" ]
