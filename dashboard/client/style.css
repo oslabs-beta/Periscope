@@ -3,4 +3,18 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.components {
+  border-color: black;
+  margin: 2px;
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+  text-align: center;
+}
 
+#pieChart {
+  padding-left: 38px;
+}
+
+#barChart {
+  padding-left: 30px;
+}

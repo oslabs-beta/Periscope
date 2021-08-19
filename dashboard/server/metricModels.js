@@ -1,5 +1,5 @@
-const pgp = require('pg-promise');
-const db = pgp('') // <= database url goes here
+// const pgp = require('pg-promise');
+// const db = pgp('') // <= database url goes here
 
 
-module.exports = metricModels;
+// module.exports = metricModels;

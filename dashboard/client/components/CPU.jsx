@@ -35,21 +35,23 @@ const CPU = () => {
   return (
     <div>
       <h2>CPU Usage</h2>
-      <PieChart width={500} height={350}>
-        <Pie
-          data={data01}
-          dataKey='value'
-          nameKey='name'
-          cx='50%'
-          cy='50%'
-          innerRadius={70}
-          outerRadius={120}
-          fill='#8884d8'
-          label='name'
-          paddingAngle={5}
-          label={renderLabel}
-        />
-      </PieChart>
+      <div id='pieChart'>
+        <PieChart width={550} height={350}>
+          <Pie
+            data={data01}
+            dataKey='value'
+            nameKey='name'
+            cx='50%'
+            cy='50%'
+            innerRadius={70}
+            outerRadius={120}
+            fill='#8884d8'
+            label='name'
+            paddingAngle={5}
+            label={renderLabel}
+          />
+        </PieChart>
+      </div>
     </div>
   );
 };

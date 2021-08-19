@@ -17,16 +17,16 @@ const mainContainer = () => {
 
   return (
     <div className='main-container'>
-      <div className='Memory'>
+      <div className='components' id='Memory'>
         <Memory />
       </div>
-      <div className='logs'>
+      <div id='logs' className='components'>
         <ClusterInfo />
       </div>
-      <div className='CPU'>
+      <div id='CPU' className='components'>
         <CPU />
       </div>
-      <div>
+      <div id='disk-usage' className='components'>
         <DiskUsage />
       </div>
     </div>
