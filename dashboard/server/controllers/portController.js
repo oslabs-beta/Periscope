@@ -11,13 +11,15 @@ let isPromUp = false;
 
 
 //sets up port forwarding on prometheus server so we can grab data
-const portForward = async () => {
+portController.portForward =  async (req, res, next) => {
   try {
-    const process = await spawn('kubectl', ['--namespace=default', 'port-forward', 'prometheus-prometheus-kube-prometheus-prometheus-0', '9090'])
+    const process =  await spawn('kubectl', ['--namespace=default', 'port-forward', 'prometheus-prometheus-kube-prometheus-prometheus-0', '9090'])
 
-   await process.stdout.on('data', data => {
+    await process.stdout.on('data', data => {
       console.log(`stdout: ${data}`);
-      isPromUp = true; 
+      isPromUp = true;
+      res.locals.promUp = isPromUp; 
+      console.log('res.locals.promUP: ', res.locals.promUp);
     });
 
     await process.stderr.on('data', (data) => {
@@ -27,9 +29,13 @@ const portForward = async () => {
     await process.on('close', (code) => {
       // if (code === 1) console.log('PROMETHEUS ALREADY IN USE NUM NUM');
       console.log(`child process exited with code ${code}`);
-      isPromUp = false; 
+      if (code === 1) {isPromUp = true; 
+      res.locals.promUp = isPromUp;
+      console.log('child process res.locals.promUp: ', res.locals.promUp)
+      }
     });
-
+    console.log('returning next')
+    return next();
     // return next();
   } catch (err) {
     console.log(err);
@@ -46,7 +52,11 @@ portController.isUp = async (req, res, next) => {
 
 
   try {
-    if (!isPromUp)  await portForward();
+    console.log('promUp?: ', isPromUp);
+    if (!isPromUp)  {
+      const result = await portForward();
+      console.log('portForward running? ', result);
+    }
     //if (!isPromUp) console.log('something is wrong with isPromUp');
     console.log('got to response')
     const response = await fetch(query);
