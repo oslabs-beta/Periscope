@@ -2,16 +2,15 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const prometheusRouter = require('./routes/prometheusRouter');
+const metricsRouter = require('./routes/metricsRouter');
 const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
-// app.get('/metric', metricController.getMetric, (req, res) => {
-//   return res.status(200).json(res.locals.metrics);
-// });
 
 app.use('/prometheus', prometheusRouter);
+app.use('/metrics', metricsRouter);
 
 app.get('/', (req, res) => {
   return res

@@ -33,7 +33,7 @@ module.exports = {
     port: 8080,
     contentBase: path.resolve(__dirname, './client'),
     proxy: {
-      '/prometheus': {
+      '/': {
         target: 'http://localhost:3000',
         secure: false,
       },

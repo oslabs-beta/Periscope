@@ -1,12 +1,9 @@
 const express = require('express');
 const prometheusRouter = express.Router();
 const portController = require('../controllers/portController');
-// const metricsController = require('../controllers/metricsController');
 
-
-// getting metrics 
-prometheusRouter.get('/', portController.isUp, (req, res) => {
-  res.status(200).send(res.locals.query);
+prometheusRouter.get('/', portController.portForward, (req, res) => {
+  res.status(200).send(res.locals.promUp);
 });
 
 module.exports = prometheusRouter;
