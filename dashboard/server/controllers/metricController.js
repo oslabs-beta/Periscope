@@ -58,7 +58,7 @@ metricController.getNodeCPU = async (req, res, next) => {
   try {
     console.log('in metricsController.getMetric');
     const response = await fetch(query);
-    res.locals.podCPU = await response.json();
+    res.locals.nodeCPU = await response.json();
     // console.log('locals: ', res.locals.query);
     return next();
   } catch (err) {
