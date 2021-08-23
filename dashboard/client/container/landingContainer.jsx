@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const LandingContainer = ()=> {
+useEffect(()=>{
+  fetch('/prometheus').then(data=>{
+    console.log('connected to prometheus', data)
+  })
+}, [])
 
   return (
     <div>
