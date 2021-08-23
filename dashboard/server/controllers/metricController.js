@@ -6,10 +6,6 @@ const currentDate = Math.floor(Date.now() / 1000);
 const startDate = currentDate - 604800;
 console.log('date: ', currentDate);
 
-metricController.getMetrics = async (req, res, next) => {
-  const query = `http://localhost:9090/api/v1/query?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m]))by(pod)&start=${startDate}&end=${currentDate}&step=1m`;
-
-
 metricController.getTotalDisk = async (req, res, next) => {
 
   // get totalbytes, just need one object. disk usage will be (total-free) / total
