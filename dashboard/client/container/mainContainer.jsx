@@ -13,24 +13,16 @@ const mainContainer = () => {
     fetch('/metrics')
       .then((res) => res.json())
       .then((data) => {
-        setCPU(data.nodeCPU)
-        setTotalDisk(data.totalDisk)
-        setFreeDisk(data.freeDisk)
+        setCPU(data.nodeCPU);
+        setTotalDisk(data.totalDisk);
+        setFreeDisk(data.freeDisk);
       });
   }, []);
 
-console.log(cpu);
-console.log(totalDisk);
-console.log(freeDisk);
+  //  console.log(cpu);
+  // console.log('this is totalDisk.result: ', totalDisk.data.result);
 
-
-
-
-
-
-
-
-
+  // const td = totalDisk.data?.result;
 
   return (
     <div className='main-container'>
@@ -41,10 +33,10 @@ console.log(freeDisk);
         <ClusterInfo />
       </div>
       <div id='CPU' className='components'>
-        <CPU cpu={cpu}/>
+        <CPU cpu={cpu} />
       </div>
       <div id='disk-usage' className='components'>
-        <DiskUsage total={totalDisk} free={freeDisk}/>
+        <DiskUsage total={totalDisk} free={freeDisk} />
       </div>
     </div>
   );
