@@ -6,7 +6,10 @@ const currentDate = Math.floor(Date.now() / 1000);
 const startDate = currentDate - 604800;
 console.log('date: ', currentDate);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3e68e2842464f9717f15f141d7a01676a305eca6
 metricController.getTotalDisk = async (req, res, next) => {
   // get totalbytes, just need one object. disk usage will be (total-free) / total
   const totalQuery = `http://localhost:9090/api/v1/query?query=sum(node_filesystem_size_bytes)by(instance)`;
@@ -51,7 +54,7 @@ metricController.getNodeCPU = async (req, res, next) => {
   try {
     console.log('in metricsController.getMetric');
     const response = await fetch(query);
-    res.locals.podCPU = await response.json();
+    res.locals.nodeCPU = await response.json();
     // console.log('locals: ', res.locals.query);
     return next();
   } catch (err) {

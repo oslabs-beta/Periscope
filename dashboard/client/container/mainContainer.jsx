@@ -5,15 +5,32 @@ import ClusterInfo from '../components/ClusterInfo.jsx';
 import DiskUsage from '../components/DiskUsage.jsx';
 
 const mainContainer = () => {
-  // const [metrics, setMetrics] = useState([]);
+  const [cpu, setCPU] = useState({});
+  const [totalDisk, setTotalDisk] = useState({});
+  const [freeDisk, setFreeDisk] = useState({});
 
-  // useEffect(() => {
-  //   fetch('/metrics')
-  //     .then((res) => res.json)
-  //     .then((data) => {
-  //       setMetrics(data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch('/metrics')
+      .then((res) => res.json())
+      .then((data) => {
+        setCPU(data.nodeCPU)
+        setTotalDisk(data.totalDisk)
+        setFreeDisk(data.freeDisk)
+      });
+  }, []);
+
+console.log(cpu);
+console.log(totalDisk);
+console.log(freeDisk);
+
+
+
+
+
+
+
+
+
 
   return (
     <div className='main-container'>
@@ -24,10 +41,10 @@ const mainContainer = () => {
         <ClusterInfo />
       </div>
       <div id='CPU' className='components'>
-        <CPU />
+        <CPU cpu={cpu}/>
       </div>
       <div id='disk-usage' className='components'>
-        <DiskUsage />
+        <DiskUsage total={totalDisk} free={freeDisk}/>
       </div>
     </div>
   );
