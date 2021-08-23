@@ -66,4 +66,17 @@ metricController.getNodeCPU = async (req, res, next) => {
   }
 };
 
+metricController.getNodeMemory = async (req, res, next) => {
+  const query = `http://localhost:9090/api/v1/query?query=sum(container_memory_usage_bytes)by(node)`;
+
+  try {
+    const response = await fetch(query);
+    res.locals.nodeMemory = await response.json();
+    console.log('nodeMemory: ', res.locals.nodeMemory);
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+}
+
 module.exports = metricController;

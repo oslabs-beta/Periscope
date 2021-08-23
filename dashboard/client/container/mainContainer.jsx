@@ -8,6 +8,7 @@ const mainContainer = () => {
   const [cpu, setCPU] = useState({});
   const [totalDisk, setTotalDisk] = useState({});
   const [freeDisk, setFreeDisk] = useState({});
+  // const [nodeMemory, setNodeMemory] = useState({})
 
   useEffect(() => {
     fetch('/metrics')
@@ -16,12 +17,13 @@ const mainContainer = () => {
         setCPU(data.nodeCPU)
         setTotalDisk(data.totalDisk)
         setFreeDisk(data.freeDisk)
+        // console.log('data.nodeMemory', data.nodeMemory)
+        // setNodeMemory(data.nodeMemory)
+        // console.log('nodeMemory: ', nodeMemory)
       });
   }, []);
 
-console.log(cpu);
-console.log(totalDisk);
-console.log(freeDisk);
+
 
 
 
