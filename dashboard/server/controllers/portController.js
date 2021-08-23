@@ -7,7 +7,7 @@ const portController = {};
 
 
 //boolean that determines if the port is open
-let isPromUp = false; 
+let isPromUp = false;
 
 
 //sets up port forwarding on prometheus server so we can grab data
@@ -18,7 +18,7 @@ portController.portForward =  async (req, res, next) => {
     await process.stdout.on('data', data => {
       console.log(`stdout: ${data}`);
       isPromUp = true;
-      res.locals.promUp = isPromUp; 
+      res.locals.promUp = isPromUp;
       console.log('res.locals.promUP: ', res.locals.promUp);
     });
 
@@ -29,7 +29,7 @@ portController.portForward =  async (req, res, next) => {
     await process.on('close', (code) => {
       // if (code === 1) console.log('PROMETHEUS ALREADY IN USE NUM NUM');
       console.log(`child process exited with code ${code}`);
-      if (code === 1) {isPromUp = true; 
+      if (code === 1) {isPromUp = true;
       res.locals.promUp = isPromUp;
       console.log('child process res.locals.promUp: ', res.locals.promUp)
       }
@@ -45,28 +45,28 @@ portController.portForward =  async (req, res, next) => {
 
 
 
-portController.isUp = async (req, res, next) => {
-  const currentDate = new Date().toISOString();
-  const queryStr = `http://localhost:9090/api/v1/query?query=up`;
-  const query = `http://localhost:9090/api/v1/query?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m]))by(pod)&start=${currentDate}&end=${currentDate}&step=1m`;
+// portController.isUp = async (req, res, next) => {
+//   const currentDate = new Date().toISOString();
+//   const queryStr = `http://localhost:9090/api/v1/query?query=up`;
+//   const query = `http://localhost:9090/api/v1/query?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m]))by(pod)&start=${currentDate}&end=${currentDate}&step=1m`;
 
 
-  try {
-    console.log('promUp?: ', isPromUp);
-    if (!isPromUp)  {
-      const result = await portForward();
-      console.log('portForward running? ', result);
-    }
-    //if (!isPromUp) console.log('something is wrong with isPromUp');
-    console.log('got to response')
-    const response = await fetch(query);
-    res.locals.query = await response.json();
-    console.log('locals: ', res.locals.query);
-    return next();
-  } catch (err) {
-    return next(err);
-  }
-};
+//   try {
+//     console.log('promUp?: ', isPromUp);
+//     if (!isPromUp)  {
+//       const result = await portForward();
+//       console.log('portForward running? ', result);
+//     }
+//     //if (!isPromUp) console.log('something is wrong with isPromUp');
+//     console.log('got to response')
+//     const response = await fetch(query);
+//     res.locals.query = await response.json();
+//     console.log('locals: ', res.locals.query);
+//     return next();
+//   } catch (err) {
+//     return next(err);
+//   }
+// };
 
 
 module.exports = portController;
