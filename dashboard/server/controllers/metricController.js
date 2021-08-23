@@ -20,7 +20,7 @@ metricController.getMetrics = async (req, res, next) => {
   }
 };
 
-metricController.getPodCPU = async (req, res, next) => {
+metricController.getNodeCPU = async (req, res, next) => {
   const query = `http://localhost:9090/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=%22%22}[5m]))by(node)&start=${startDate}&end=${currentDate}&step=5m`;
 
   try {
