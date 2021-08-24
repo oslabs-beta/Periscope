@@ -8,19 +8,30 @@ const mainContainer = () => {
   const [cpu, setCPU] = useState({});
   const [totalDisk, setTotalDisk] = useState({});
   const [freeDisk, setFreeDisk] = useState({});
+  // const [nodeMemory, setNodeMemory] = useState({})
 
   useEffect(() => {
     fetch('/metrics')
       .then((res) => res.json())
       .then((data) => {
-        setCPU(data.nodeCPU);
-        setTotalDisk(data.totalDisk);
-        setFreeDisk(data.freeDisk);
+        setCPU(data.nodeCPU)
+        setTotalDisk(data.totalDisk)
+        setFreeDisk(data.freeDisk)
+        // console.log('data.nodeMemory', data.nodeMemory)
+        // setNodeMemory(data.nodeMemory)
+        // console.log('nodeMemory: ', nodeMemory)
       });
   }, []);
 
-  //  console.log(cpu);
-  // console.log('this is totalDisk.result: ', totalDisk.data.result);
+
+
+
+
+
+
+
+
+
 
   // const td = totalDisk.data?.result;
 
