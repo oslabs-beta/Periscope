@@ -6,7 +6,8 @@ metricsRouter.get('/',
   metricController.getNodeCPU, 
   metricController.getTotalDisk, 
   metricController.getFreeDisk, 
-  metricController.getNodeMemory, (req, res) => {
+  metricController.getNodeMemory, 
+  metricController.getClusterInfo, (req, res) => {
   res.status(200).json(res.locals);
 });
 

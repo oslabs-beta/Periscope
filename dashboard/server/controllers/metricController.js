@@ -65,12 +65,12 @@ metricController.getNodeMemory = async (req, res, next) => {
 };
 
 metricController.getClusterInfo = async (req, res, next) => {
-  // const query = `http://localhost:9090/api/v1/query?query=sum by (namespace) (kube_pod_info)`
+  const query = `http://localhost:9090/api/v1/query?query=kube_node_info`
 
   try {
     const response = await fetch(query);
-    res.locals.nodeMemory = await response.json();
-    console.log('nodeMemory: ', res.locals.nodeMemory);
+    res.locals.clusterInfo = await response.json();
+    console.log('clusterInfo: ', res.locals.clusterInfo);
     return next();
   } catch (err) {
     return next(err);

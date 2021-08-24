@@ -1,6 +1,7 @@
 import React from 'react';
 import lineColors from '../assets/colors';
 
+
 import {
   LineChart,
   Line,
@@ -54,12 +55,13 @@ const DiskUsage = (props) => {
         // (total size - value at each time) / total size
         const totalDisk = nodes[nodeNum];
         const freeDiskSpace = values[k][1];
-        data[k][nodeNum] = (totalDisk - freeDiskSpace) / totalDisk;
+        data[k][nodeNum] = +(((totalDisk - freeDiskSpace) / totalDisk).toFixed(4));
       }
     }
   }
 
-  console.log(data)
+
+
 
   // create the lines for each node
   // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
@@ -68,7 +70,7 @@ const DiskUsage = (props) => {
   const lines = [];
   for (let i = 0; i < numNodes.length; i++) {
     lines.push(
-      <Line type='monotone' dataKey={numNodes[i]} key={i} stroke={lineColors[i]} />
+      <Line type='monotone' dataKey={`node${i + 1}`} key={i} stroke={lineColors[i]} />
     );
   }
 
@@ -77,7 +79,7 @@ const DiskUsage = (props) => {
     <div>
       <h2>Disk Usage</h2>
       <LineChart
-        width={500}
+        width={800}
         height={300}
         data={data}
         margin={{
@@ -88,7 +90,7 @@ const DiskUsage = (props) => {
         }}
       >
         <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='time' />
+        <XAxis dataKey="time" ticks={[20, 40, 60, 80, 100]}/>
         <YAxis />
         <Tooltip />
         <Legend />

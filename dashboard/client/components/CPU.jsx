@@ -26,9 +26,9 @@ const CPU = (props) => {
   return (
     <div>
       <h2>CPU Usage</h2>
-      <ResponsiveContainer>
+   
         <LineChart
-            width={500}
+            width={800}
             height={300}
             data={resultArr}
             margin={{
@@ -39,13 +39,13 @@ const CPU = (props) => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis scaleToFit={true} tick={{fontSize: 10}} dataKey="time" ticks={[20, 40, 60, 80, 100]}/>
+            <XAxis  tick={{fontSize: 10}} dataKey="time" ticks={[20, 40, 60, 80, 100]}/>
             <YAxis />
             <Tooltip />
             <Legend />
             {lines || null}
           </LineChart>
-        </ResponsiveContainer>
+        
       </div>
 
   );
