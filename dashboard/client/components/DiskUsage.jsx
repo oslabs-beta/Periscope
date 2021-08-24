@@ -14,6 +14,10 @@ import {
 
 
 const DiskUsage = (props) => {
+  if (!props.total.data) return null;
+  if (!props.free.data) return null;
+
+
   const total = props.total.data?.result;
   const free = props.free.data?.result;
 
@@ -25,16 +29,16 @@ const DiskUsage = (props) => {
   if (total && free) {
     // loops through totalDiskSpace query and pushes the name of node and total diskspace of node into an object
     for (let i = 0; i < total.length; i++) {
-      // push each nodename: diskSpace
-      nodes[total[i].metric.instance] = total[i].value[1];
+      // push each node #: diskSpace
+      nodes[`node${i + 1}`] = total[i].value[1];
     }
+    console.log(nodes)
 
-    console.log(free);
 
     // loops through FreeDiskSpace and sends time and value @ time to new object
     for (let i = 0; i < free.length; i++) {
       // each free[index].metric.instance ==> name of the node
-      const nodeName = free[i].metric.instance;
+      const nodeNum = `node${i + 1}`;
       const values = free[i].values;
       // free[index].values is an array
       // loop through the array and each index in that array [time, value]
@@ -47,16 +51,18 @@ const DiskUsage = (props) => {
           data.push({ time: time });
         }
       }
-      // put the node name & it's value in each time object
-      for (let k = 0; k < data.length; k++) 
+      // put the node # & it's value in each time object
+      for (let k = 0; k < data.length; k++)
       {
         // (total size - value at each time) / total size
-        const totalDisk = nodes[nodeName];
+        const totalDisk = nodes[nodeNum];
         const freeDiskSpace = values[k][1];
-        data[k][`node${k+1}`] = (totalDisk - freeDiskSpace) / totalDisk;
+        data[k][nodeNum] = (totalDisk - freeDiskSpace) / totalDisk;
       }
     }
   }
+
+  console.log(data)
 
   // create the lines for each node
   // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
