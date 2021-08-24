@@ -26,11 +26,10 @@ metricController.getTotalDisk = async (req, res, next) => {
 };
 
 metricController.getFreeDisk = async (req, res, next) => {
-
   // gets the last hour worth of data;
   const startTime = currentDate - 3600;
   // get the free bytes: time series
-  const freeQuery = `http://localhost:9090/api/v1/query_range?query=sum(node_filesystem_free_bytes)by(instance)&start=${startTime}&end=${currentDate}&step=2m`
+  const freeQuery = `http://localhost:9090/api/v1/query_range?query=sum(node_filesystem_free_bytes)by(instance)&start=${startTime}&end=${currentDate}&step=2m`;
 
   // try/catch block to get free disk data bytes
   try {
@@ -58,7 +57,7 @@ metricController.getNodeCPU = async (req, res, next) => {
 };
 
 metricController.getNodeMemory = async (req, res, next) => {
-  const query = `http://localhost:9090/api/v1/query?query=sum(container_memory_usage_bytes)by(node)`;
+  const query = `http://localhost:9090/api/v1/query?query=sum(container_memory_usage_bytes)by(node)%20/%20sum(container_spec_memory_limit_bytes)%20by%20(node)`;
 
   try {
     const response = await fetch(query);
@@ -68,6 +67,19 @@ metricController.getNodeMemory = async (req, res, next) => {
   } catch (err) {
     return next(err);
   }
-}
+};
+
+// metricController.getNodeMemory = async (req, res, next) => {
+//   const query = `http://localhost:9090/api/v1/query?query=sum(container_spec_memory_limit_bytes)by(node)`;
+
+//   try {
+//     const response = await fetch(query);
+//     res.locals.nodeMemory = await response.json();
+//     console.log('nodeMemory: ', res.locals.nodeMemory);
+//     return next();
+//   } catch (err) {
+//     return next(err);
+//   }
+// }
 
 module.exports = metricController;
