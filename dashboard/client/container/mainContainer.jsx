@@ -33,6 +33,7 @@ const mainContainer = () => {
 
 
 
+  // const td = totalDisk.data?.result;
 
   return (
     <div className='main-container'>
@@ -43,10 +44,10 @@ const mainContainer = () => {
         <ClusterInfo />
       </div>
       <div id='CPU' className='components'>
-        <CPU cpu={cpu}/>
+        <CPU cpu={cpu} />
       </div>
       <div id='disk-usage' className='components'>
-        <DiskUsage total={totalDisk} free={freeDisk}/>
+        <DiskUsage total={totalDisk} free={freeDisk} />
       </div>
     </div>
   );

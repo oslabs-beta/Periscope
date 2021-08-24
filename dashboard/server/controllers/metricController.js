@@ -30,13 +30,10 @@ metricController.getTotalDisk = async (req, res, next) => {
 
 metricController.getFreeDisk = async (req, res, next) => {
 
+  // gets the last hour worth of data;
+  const startTime = currentDate - 3600;
   // get the free bytes: time series
-  const freeQuery = `http://localhost:9090/api/v1/query_range?query=sum(node_filesystem_free_bytes)by(instance)&start=${startDate}&end=${currentDate}&step=1m`
-
-
-  // structure of data
-  // data key: result key: [loop through the 3 objects: in each object, grab the metric:instance to get name and then loop through the value key which has all the [time, value] arrays]
-  // calculate the rate
+  const freeQuery = `http://localhost:9090/api/v1/query_range?query=sum(node_filesystem_free_bytes)by(instance)&start=${startTime}&end=${currentDate}&step=2m`
 
 
   // try/catch block to get free disk data bytes
