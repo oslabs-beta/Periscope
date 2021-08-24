@@ -15,8 +15,6 @@ import colors from '../assets/colors';
 const Memory = ({ nodeMemory }) => {
   if (!nodeMemory.data) return null;
 
-  console.log('in memory component', nodeMemory);
-
   const nodes = nodeMemory.data.result;
   const resultArr = [];
   nodes.forEach((node, i) => {
@@ -25,7 +23,6 @@ const Memory = ({ nodeMemory }) => {
     dataPoint.percentageMemoryUsed = +parseFloat(node.value[1]).toFixed(4);
     resultArr.push(dataPoint);
   });
-  console.log(resultArr);
 
   // const colors = ['red', 'green', 'blue'];
 

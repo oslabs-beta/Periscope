@@ -1,12 +1,35 @@
 import React from 'react';
+import Node from './NodeInfo.jsx';
 
-const ClusterInfo = () => {
+const ClusterInfo = ({ clusterInfo }) => {
+
+  if (!clusterInfo.data) return null;
+
+  const clusterInfoArr = clusterInfo.data.result;
+
+  // component for each node
+  const nodes = [];
+  for (let i = 0; i < clusterInfoArr.length; i++) {
+    const nodeName = clusterInfoArr[i].metric.node;
+    const nodeNumber = 'node' + (i + 1);
+    const internal_ip = clusterInfoArr[i].metric.internal_ip;
+    const time = new Date(clusterInfoArr[i].value[0] * 1000).toLocaleString();
+  
+    nodes.push(<Node 
+      key={i} 
+      nodeName={nodeName}
+      nodeNumber={nodeNumber}
+      internal_ip={internal_ip}
+      time={time} 
+      />);
+  }
+
   return (
     <div>
       <h2>ClusterInfo</h2>
-      <p>Mon Jan 1 00:00:00 UTC 2001 INFO 1</p>
-      <p>Mon Jan 1 00:00:00 UTC 2001 INFO 2</p>
-      <p>Mon Jan 1 00:00:00 UTC 2001 INFO 3</p>
+      <div>
+      {nodes}
+      </div>
     </div>
   );
 };

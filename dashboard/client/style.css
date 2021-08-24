@@ -1,13 +1,23 @@
 .main-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  font-family: Roboto, sans-serif;
+}
+
+body{
+  background-color: #1c1c1e;
+  color: white;
+}
+
+button{
+  background-color: white;
 }
 
 .components {
   border-color: black;
   margin: 2px;
   border-radius: 10px;
-  background-color: rgb(240, 240, 240);
+  background-color: #212125;
   text-align: center;
 }
 
@@ -17,4 +27,9 @@
 
 #barChart {
   padding-left: 30px;
+}
+
+.recharts {    
+  font-size: 1 rem;
+  font-family: Roboto, sans-serif;
 }

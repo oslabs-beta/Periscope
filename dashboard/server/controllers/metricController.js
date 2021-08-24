@@ -7,14 +7,10 @@ const startDate = currentDate - 604800;
 console.log('date: ', currentDate);
 
 metricController.getTotalDisk = async (req, res, next) => {
-  // get totalbytes, just need one object. disk usage will be (total-free) / total
+  // get totalbytes==>  disk usage will be (total-free) / total
   const totalQuery = `http://localhost:9090/api/v1/query?query=sum(node_filesystem_size_bytes)by(instance)`;
 
-  // structure of data
-  // data key: result key: [loop through the 3 objects: in each object, grab the metric:instance to get name and then loop through the value key which has all the [time, value] arrays]
-  // calculate the rate
 
-  // try/catch block to get total data bytes
   try {
     const response = await fetch(totalQuery);
     res.locals.totalDisk = await response.json();
@@ -26,10 +22,9 @@ metricController.getTotalDisk = async (req, res, next) => {
 };
 
 metricController.getFreeDisk = async (req, res, next) => {
-  // gets the last hour worth of data;
-  const startTime = currentDate - 3600;
+
   // get the free bytes: time series
-  const freeQuery = `http://localhost:9090/api/v1/query_range?query=sum(node_filesystem_free_bytes)by(instance)&start=${startTime}&end=${currentDate}&step=2m`;
+  const freeQuery = `http://localhost:9090/api/v1/query_range?query=sum(node_filesystem_free_bytes)by(instance)&start=${startDate}&end=${currentDate}&step=5m`;
 
   // try/catch block to get free disk data bytes
   try {
@@ -68,6 +63,22 @@ metricController.getNodeMemory = async (req, res, next) => {
     return next(err);
   }
 };
+
+metricController.getClusterInfo = async (req, res, next) => {
+  const query = `http://localhost:9090/api/v1/query?query=kube_node_info`
+
+  try {
+    const response = await fetch(query);
+    res.locals.clusterInfo = await response.json();
+    console.log('clusterInfo: ', res.locals.clusterInfo);
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+};
+
+
+
 
 // metricController.getNodeMemory = async (req, res, next) => {
 //   const query = `http://localhost:9090/api/v1/query?query=sum(container_spec_memory_limit_bytes)by(node)`;

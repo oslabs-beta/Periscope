@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/periscopeLogo.png';
 
 const LandingContainer = ()=> {
 useEffect(()=>{
@@ -11,7 +12,7 @@ useEffect(()=>{
   return (
     <div>
       <Link to="/dashboard" className="metrics-button">
-        <button>Go to dashboard</button>
+        <img id='periscopeLogo' src={Logo} />
       </Link>
     </div>
   )

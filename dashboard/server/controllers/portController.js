@@ -45,28 +45,5 @@ portController.portForward =  async (req, res, next) => {
 
 
 
-// portController.isUp = async (req, res, next) => {
-//   const currentDate = new Date().toISOString();
-//   const queryStr = `http://localhost:9090/api/v1/query?query=up`;
-//   const query = `http://localhost:9090/api/v1/query?query=sum(rate(container_cpu_usage_seconds_total{image!=""}[2m]))by(pod)&start=${currentDate}&end=${currentDate}&step=1m`;
-
-
-//   try {
-//     console.log('promUp?: ', isPromUp);
-//     if (!isPromUp)  {
-//       const result = await portForward();
-//       console.log('portForward running? ', result);
-//     }
-//     //if (!isPromUp) console.log('something is wrong with isPromUp');
-//     console.log('got to response')
-//     const response = await fetch(query);
-//     res.locals.query = await response.json();
-//     console.log('locals: ', res.locals.query);
-//     return next();
-//   } catch (err) {
-//     return next(err);
-//   }
-// };
-
 
 module.exports = portController;
