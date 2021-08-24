@@ -43,7 +43,7 @@ const DiskUsage = (props) => {
       nodes[total[i].metric.instance] = total[i].value[1];
     }
 
-    console.log(free);
+    // console.log(free);
 
     // loops through FreeDiskSpace and sends time and value @ time to new object
     for (let i = 0; i < free.length; i++) {
@@ -82,7 +82,7 @@ const DiskUsage = (props) => {
     );
   }
 
-  console.log(data);
+  // console.log(data);
 
   // const dataNm = [
   //   {

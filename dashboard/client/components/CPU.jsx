@@ -1,6 +1,6 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import colors from '../assets/colors';
 
 const CPU = (props) => {
 
@@ -19,7 +19,6 @@ const CPU = (props) => {
   });
 
   const lines = [];
-  const colors = ['red', 'green', 'blue'];
   for (let i = 0; i < nodes.length; i++) {
     lines.push(<Line type="monotone" dot={false} dataKey={`node${i + 1}`} key={i} stroke={colors[i]} />)
   };
