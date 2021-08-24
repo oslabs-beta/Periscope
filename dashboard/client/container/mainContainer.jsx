@@ -8,6 +8,7 @@ const mainContainer = () => {
   const [cpu, setCPU] = useState({});
   const [totalDisk, setTotalDisk] = useState({});
   const [freeDisk, setFreeDisk] = useState({});
+  // const [nodeMemory, setNodeMemory] = useState({})
 
   useEffect(() => {
     fetch('/metrics')
@@ -16,12 +17,12 @@ const mainContainer = () => {
         setCPU(data.nodeCPU)
         setTotalDisk(data.totalDisk)
         setFreeDisk(data.freeDisk)
+        // console.log('data.nodeMemory', data.nodeMemory)
+        // setNodeMemory(data.nodeMemory)
+        // console.log('nodeMemory: ', nodeMemory)
       });
   }, []);
 
-console.log(cpu);
-console.log(totalDisk);
-console.log(freeDisk);
 
 
 
@@ -31,6 +32,8 @@ console.log(freeDisk);
 
 
 
+
+  // const td = totalDisk.data?.result;
 
   return (
     <div className='main-container'>
@@ -41,10 +44,10 @@ console.log(freeDisk);
         <ClusterInfo />
       </div>
       <div id='CPU' className='components'>
-        <CPU cpu={cpu}/>
+        <CPU cpu={cpu} />
       </div>
       <div id='disk-usage' className='components'>
-        <DiskUsage total={totalDisk} free={freeDisk}/>
+        <DiskUsage total={totalDisk} free={freeDisk} />
       </div>
     </div>
   );
