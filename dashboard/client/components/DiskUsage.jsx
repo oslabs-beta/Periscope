@@ -11,21 +11,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-/*
-{
-  time: #
-  node1: val
-  node2: val
-  node3: val 
-}
 
-{
-  time: 10am 
-  node1@10am
-  node2@10am
-  node3@10am
-}
-*/
 
 const DiskUsage = (props) => {
   const total = props.total.data?.result;
@@ -62,72 +48,27 @@ const DiskUsage = (props) => {
         }
       }
       // put the node name & it's value in each time object
-      for (let k = 0; k < data.length; k++) {
+      for (let k = 0; k < data.length; k++) 
+      {
         // (total size - value at each time) / total size
         const totalDisk = nodes[nodeName];
         const freeDiskSpace = values[k][1];
-        data[k][nodeName] = (totalDisk - freeDiskSpace) / totalDisk;
+        data[k][`node${k+1}`] = (totalDisk - freeDiskSpace) / totalDisk;
       }
     }
   }
 
   // create the lines for each node
-  <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
+  // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
   // grab the names & the number of nodes from our nodes object
   const numNodes = Object.keys(nodes);
   const lines = [];
   for (let i = 0; i < numNodes.length; i++) {
     lines.push(
-      <Line type='monotone' dataKey={numNodes[i]} stroke={lineColors[i]} />
+      <Line type='monotone' dataKey={`node${i+1}`} key={i} stroke={lineColors[i]} />
     );
   }
 
-  console.log(data);
-
-  // const dataNm = [
-  //   {
-  //     name: 'Page A',
-  //     uv: 4000,
-  //     pv: 2400,
-  //     amt: 2400,
-  //   },
-  //   {
-  //     name: 'Page B',
-  //     uv: 3000,
-  //     pv: 1398,
-  //     amt: 2210,
-  //   },
-  //   {
-  //     name: 'Page C',
-  //     uv: 2000,
-  //     pv: 9800,
-  //     amt: 2290,
-  //   },
-  //   {
-  //     name: 'Page D',
-  //     uv: 2780,
-  //     pv: 3908,
-  //     amt: 2000,
-  //   },
-  //   {
-  //     name: 'Page E',
-  //     uv: 1890,
-  //     pv: 4800,
-  //     amt: 2181,
-  //   },
-  //   {
-  //     name: 'Page F',
-  //     uv: 2390,
-  //     pv: 3800,
-  //     amt: 2500,
-  //   },
-  //   {
-  //     name: 'Page G',
-  //     uv: 3490,
-  //     pv: 4300,
-  //     amt: 2100,
-  //   },
-  // ];
 
   return (
     <div>
