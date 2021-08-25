@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../assets/periscopeLogo.png';
+import Logo from '../assets/PeriscopeLogoTransparent.png';
 
-const LandingContainer = ()=> {
-useEffect(()=>{
-  fetch('/prometheus').then(data=>{
-    console.log('connected to prometheus', data)
-  })
-}, [])
+const LandingContainer = () => {
+  useEffect(() => {
+    fetch('/prometheus').then((data) => {
+      console.log('connected to prometheus', data);
+    });
+  }, []);
 
   return (
     <div className='landing'>
-      <Link to="/dashboard" className="metrics-button">
+      <Link to='/dashboard' className='metrics-button'>
         <img id='periscopeLogo' src={Logo} />
       </Link>
     </div>
-  )
-}
+  );
+};
 
 export default LandingContainer;
