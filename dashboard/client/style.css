@@ -29,6 +29,13 @@ button {
   padding-left: 30px;
 }
 
+#loading{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .recharts {
   font-size: 1 rem;
   font-family: Roboto, sans-serif;
