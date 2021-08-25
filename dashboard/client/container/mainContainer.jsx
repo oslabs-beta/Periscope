@@ -11,6 +11,8 @@ const mainContainer = () => {
   const [nodeMemory, setNodeMemory] = useState({});
   const [clusterInfo, setClusterInfo] = useState({});
 
+
+
   useEffect(() => {
     fetch('/metrics')
       .then((res) => res.json())
@@ -21,14 +23,14 @@ const mainContainer = () => {
         setNodeMemory(data.nodeMemory);
         console.log(data.clusterInfo)
         setClusterInfo(data.clusterInfo);
-       
+
       });
   }, []);
-  // const td = totalDisk.data?.result;
+
+
 
   return (
-
-    
+    // {cpu.length > 0 && }
     <div className='main-container'>
           <div id='CPU' className='components'>
         <CPU cpu={cpu} />
@@ -42,7 +44,7 @@ const mainContainer = () => {
       <div id='logs' className='components'>
         <ClusterInfo clusterInfo={clusterInfo} />
       </div>
-     
+
     </div>
   );
 };

@@ -50,7 +50,7 @@ const Memory = ({ nodeMemory }) => {
           <CartesianGrid />
           {render && <XAxis dataKey='node' tick={{ fontSize: 10 }} />}
           <YAxis />
-          <Tooltip />
+          <Tooltip cursor={{fill:'transparent'}}/>
           <Bar dataKey='percentageMemoryUsed' background={{ fill: 'grey' }}>
             {resultArr.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index]} />

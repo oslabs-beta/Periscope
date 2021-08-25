@@ -4,9 +4,10 @@
   font-family: Roboto, sans-serif;
 }
 
-body {
-  background-color: #121212;
-  color: white;
+
+body{
+  background-color: #1c1c1e;
+  color: rgb(48, 48, 70);
 }
 
 button {
@@ -24,6 +25,8 @@ button {
 #pieChart {
   padding-left: 38px;
 }
+
+
 
 #barChart {
   padding-left: 30px;
