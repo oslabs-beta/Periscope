@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BarChart,
   Bar,
@@ -13,17 +13,23 @@ import {
 import colors from '../assets/colors';
 
 const Memory = ({ nodeMemory }) => {
-  if (!nodeMemory.data) return null;
-
-  const nodes = nodeMemory.data.result;
+  // if (!nodeMemory.data) return null;
   const resultArr = [];
-  nodes.forEach((node, i) => {
-    const dataPoint = {};
-    dataPoint.node = 'node' + (i + 1);
-    dataPoint.percentageMemoryUsed = +parseFloat(node.value[1]).toFixed(4);
-    resultArr.push(dataPoint);
-  });
-
+  const [result, setResult] = useState([]);
+  const [render, setRender] = useState(false);
+  if (nodeMemory.data) {
+    const nodes = nodeMemory.data.result;
+    nodes.forEach((node, i) => {
+      const dataPoint = {};
+      dataPoint.node = 'node' + (i + 1);
+      dataPoint.percentageMemoryUsed = +parseFloat(node.value[1]).toFixed(4);
+      resultArr.push(dataPoint);
+    });
+    if (render === false) {
+      setResult(resultArr);
+      setRender(true);
+    }
+  }
   // const colors = ['red', 'green', 'blue'];
 
   return (
@@ -33,7 +39,7 @@ const Memory = ({ nodeMemory }) => {
         <BarChart
           width={500}
           height={300}
-          data={resultArr}
+          data={result}
           margin={{
             top: 5,
             right: 30,
@@ -41,10 +47,10 @@ const Memory = ({ nodeMemory }) => {
             bottom: 5,
           }}
           barSize={20}>
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='node' tick={{ fontSize: 10 }} />
+          <CartesianGrid stroke='grey' />
+          {render && <XAxis dataKey='node' tick={{ fontSize: 10 }} />}
           <YAxis />
-          <Tooltip cursor={{fill:'transparent'}}/>
+          <Tooltip cursor={{ fill: 'transparent' }} />
           <Bar dataKey='percentageMemoryUsed' background={{ fill: 'grey' }}>
             {resultArr.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index]} />
