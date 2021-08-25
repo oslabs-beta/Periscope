@@ -4,12 +4,12 @@
   font-family: Roboto, sans-serif;
 }
 
-body{
-  background-color: #1c1c1e;
+body {
+  background-color: #121212;
   color: white;
 }
 
-button{
+button {
   background-color: white;
 }
 
@@ -17,7 +17,7 @@ button{
   border-color: black;
   margin: 2px;
   border-radius: 10px;
-  background-color: #212125;
+  background-color: #1f1b24;
   text-align: center;
 }
 
@@ -29,7 +29,8 @@ button{
   padding-left: 30px;
 }
 
-.recharts {    
+.recharts {
   font-size: 1 rem;
   font-family: Roboto, sans-serif;
+  color: white;
 }

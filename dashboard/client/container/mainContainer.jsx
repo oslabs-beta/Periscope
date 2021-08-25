@@ -24,10 +24,11 @@ const mainContainer = () => {
        
       });
   }, []);
-
   // const td = totalDisk.data?.result;
 
   return (
+
+    
     <div className='main-container'>
           <div id='CPU' className='components'>
         <CPU cpu={cpu} />

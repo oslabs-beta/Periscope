@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import lineColors from '../assets/colors';
-
 
 import {
   LineChart,
@@ -13,28 +12,23 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-
 const DiskUsage = (props) => {
-  if (!props.total.data) return null;
-  if (!props.free.data) return null;
-
-
-  const total = props.total.data?.result;
-  const free = props.free.data?.result;
-
   // nodes object ==> name of node: total diskSpace
   const nodes = {};
   const data = [];
-
-  // loop through freediskspace and get the times
-  if (total && free) {
+  const lines = [];
+  const [diskUsage, setDiskUsage] = useState([]);
+  const [render, setRender] = useState(false);
+  if (props.free.data) {
+    const total = props.total.data?.result;
+    const free = props.free.data?.result;
+    // loop through freediskspace and get the times
 
     // loops through totalDiskSpace query and pushes the name of node and total diskspace of node into an object
     for (let i = 0; i < total.length; i++) {
       // push each node #: diskSpace
       nodes[`node${i + 1}`] = total[i].value[1];
     }
-
 
     // loops through FreeDiskSpace and sends time and value @ time to new object
     for (let i = 0; i < free.length; i++) {
@@ -50,47 +44,51 @@ const DiskUsage = (props) => {
         }
       }
       // put the node # & it's value in each time object
-      for (let k = 0; k < data.length; k++)
-      {
+      for (let k = 0; k < data.length; k++) {
         // (total size - value at each time) / total size
         const totalDisk = nodes[nodeNum];
         const freeDiskSpace = values[k][1];
-        data[k][nodeNum] = +(((totalDisk - freeDiskSpace) / totalDisk).toFixed(4));
+        data[k][nodeNum] = +((totalDisk - freeDiskSpace) / totalDisk).toFixed(
+          4
+        );
       }
     }
+    if (render === false) {
+      setDiskUsage(data);
+      setRender(true);
+    }
+
+    // create the lines for each node
+    // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
+    // grab the names & the number of nodes from our nodes object
+    const numNodes = Object.keys(nodes);
+
+    for (let i = 0; i < numNodes.length; i++) {
+      lines.push(
+        <Line
+          type='monotone'
+          dataKey={`node${i + 1}`}
+          key={i}
+          stroke={lineColors[i]}
+        />
+      );
+    }
   }
-
-
-
-
-  // create the lines for each node
-  // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
-  // grab the names & the number of nodes from our nodes object
-  const numNodes = Object.keys(nodes);
-  const lines = [];
-  for (let i = 0; i < numNodes.length; i++) {
-    lines.push(
-      <Line type='monotone' dataKey={`node${i + 1}`} key={i} stroke={lineColors[i]} />
-    );
-  }
-
-
   return (
     <div>
       <h2>Disk Usage</h2>
       <LineChart
         width={800}
         height={300}
-        data={data}
+        data={diskUsage}
         margin={{
           top: 5,
           right: 30,
           left: 20,
           bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey="time" ticks={[20, 40, 60, 80, 100]}/>
+        }}>
+        <CartesianGrid stroke='grey' />
+        <XAxis dataKey='time' ticks={[20, 40, 60, 80, 100]} />
         <YAxis />
         <Tooltip />
         <Legend />
