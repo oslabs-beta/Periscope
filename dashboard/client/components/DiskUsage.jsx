@@ -49,7 +49,7 @@ const DiskUsage = (props) => {
         // (total size - value at each time) / total size
         const totalDisk = nodes[nodeNum];
         const freeDiskSpace = values[k][1];
-        data[k][nodeNum] = ((totalDisk - freeDiskSpace) / totalDisk).toFixed(4);
+        data[k][nodeNum] = ((totalDisk - freeDiskSpace) / totalDisk).toFixed(4)*100;
       }
     }
     if (render === false) {
@@ -67,7 +67,7 @@ const DiskUsage = (props) => {
         />
       );
     }
-  
+
 
     // create the lines for each node
     // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
@@ -94,7 +94,10 @@ const DiskUsage = (props) => {
           ticks={[20, 40, 60, 80, 100]}
           tick={{ fontSize: 10 }}
         />
-        <YAxis />
+        <YAxis tickFormatter={(tick) => {
+            return `${tick}%`;
+          }}
+        />
         <Tooltip />
         <Legend />
         {lines}
