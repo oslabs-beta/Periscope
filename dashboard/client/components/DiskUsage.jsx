@@ -22,6 +22,7 @@ const DiskUsage = (props) => {
   if (props.free.data) {
     const total = props.total.data?.result;
     const free = props.free.data?.result;
+    const nodes = props.total.data.result;
     // loop through freediskspace and get the times
 
     // loops through totalDiskSpace query and pushes the name of node and total diskspace of node into an object
@@ -48,31 +49,31 @@ const DiskUsage = (props) => {
         // (total size - value at each time) / total size
         const totalDisk = nodes[nodeNum];
         const freeDiskSpace = values[k][1];
-        data[k][nodeNum] = +((totalDisk - freeDiskSpace) / totalDisk).toFixed(
-          4
-        );
+        data[k][nodeNum] = ((totalDisk - freeDiskSpace) / totalDisk).toFixed(4);
       }
     }
     if (render === false) {
       setDiskUsage(data);
       setRender(true);
     }
-
-    // create the lines for each node
-    // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
-    // grab the names & the number of nodes from our nodes object
-    const numNodes = Object.keys(nodes);
-
-    for (let i = 0; i < numNodes.length; i++) {
+    for (let i = 0; i < nodes.length; i++) {
       lines.push(
         <Line
           type='monotone'
+          dot={false}
           dataKey={`node${i + 1}`}
           key={i}
           stroke={lineColors[i]}
         />
       );
     }
+  
+
+    // create the lines for each node
+    // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
+    // grab the names & the number of nodes from our nodes object
+    // const numNodes = Object.keys(nodes);
+    // console.log(numNodes)
   }
   return (
     <div>
@@ -88,7 +89,11 @@ const DiskUsage = (props) => {
           bottom: 5,
         }}>
         <CartesianGrid stroke='grey' />
-        <XAxis dataKey='time' ticks={[20, 40, 60, 80, 100]} />
+        <XAxis
+          dataKey='time'
+          ticks={[20, 40, 60, 80, 100]}
+          tick={{ fontSize: 10 }}
+        />
         <YAxis />
         <Tooltip />
         <Legend />

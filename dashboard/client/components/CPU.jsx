@@ -45,6 +45,7 @@ const CPU = (props) => {
         />
       );
     }
+    console.log(results);
   }
   return (
     <div>

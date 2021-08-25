@@ -17,18 +17,18 @@ const Memory = ({ nodeMemory }) => {
   const resultArr = [];
   const [result, setResult] = useState([]);
   const [render, setRender] = useState(false);
-  if(nodeMemory.data){
-  const nodes = nodeMemory.data.result;
-  nodes.forEach((node, i) => {
-    const dataPoint = {};
-    dataPoint.node = 'node' + (i + 1);
-    dataPoint.percentageMemoryUsed = +parseFloat(node.value[1]).toFixed(4);
-    resultArr.push(dataPoint);
-  });
-  if (render === false) {
-    setResult(resultArr);
-    setRender(true);
-  }
+  if (nodeMemory.data) {
+    const nodes = nodeMemory.data.result;
+    nodes.forEach((node, i) => {
+      const dataPoint = {};
+      dataPoint.node = 'node' + (i + 1);
+      dataPoint.percentageMemoryUsed = +parseFloat(node.value[1]).toFixed(4);
+      resultArr.push(dataPoint);
+    });
+    if (render === false) {
+      setResult(resultArr);
+      setRender(true);
+    }
   }
   // const colors = ['red', 'green', 'blue'];
 
@@ -47,10 +47,10 @@ const Memory = ({ nodeMemory }) => {
             bottom: 5,
           }}
           barSize={20}>
-          <CartesianGrid />
+          <CartesianGrid stroke='grey' />
           {render && <XAxis dataKey='node' tick={{ fontSize: 10 }} />}
           <YAxis />
-          <Tooltip cursor={{fill:'transparent'}}/>
+          <Tooltip cursor={{ fill: 'transparent' }} />
           <Bar dataKey='percentageMemoryUsed' background={{ fill: 'grey' }}>
             {resultArr.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index]} />
