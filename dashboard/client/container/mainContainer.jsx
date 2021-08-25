@@ -3,6 +3,8 @@ import Memory from '../components/Memory.jsx';
 import CPU from '../components/CPU.jsx';
 import ClusterInfo from '../components/ClusterInfo.jsx';
 import DiskUsage from '../components/DiskUsage.jsx';
+import loading from '../assets/loading.gif';
+
 
 const mainContainer = () => {
   const [cpu, setCPU] = useState({});
@@ -10,6 +12,7 @@ const mainContainer = () => {
   const [freeDisk, setFreeDisk] = useState({});
   const [nodeMemory, setNodeMemory] = useState({});
   const [clusterInfo, setClusterInfo] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
 
 
@@ -23,16 +26,19 @@ const mainContainer = () => {
         setNodeMemory(data.nodeMemory);
         console.log(data.clusterInfo)
         setClusterInfo(data.clusterInfo);
-
+        setIsLoading(false);
       });
   }, []);
 
 
 
   return (
-    // {cpu.length > 0 && }
+    (isLoading)
+    ?
+    <img id='loading' src={loading} />
+    :
     <div className='main-container'>
-          <div id='CPU' className='components'>
+      <div id='CPU' className='components'>
         <CPU cpu={cpu} />
       </div>
       <div className='components' id='Memory'>
@@ -44,7 +50,6 @@ const mainContainer = () => {
       <div id='logs' className='components'>
         <ClusterInfo clusterInfo={clusterInfo} />
       </div>
-
     </div>
   );
 };
