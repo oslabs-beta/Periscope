@@ -6,7 +6,7 @@
 
 body {
   background-color: #121212;
-  color: rgb(48, 48, 70);
+  color: rgb(100, 100, 117);
 }
 
 button {
@@ -29,12 +29,14 @@ button {
   padding-left: 30px;
 }
 
-#loading{
+#loading {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 }
+
+
 
 .recharts {
   font-size: 1 rem;
