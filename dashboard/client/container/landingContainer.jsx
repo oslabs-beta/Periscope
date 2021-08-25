@@ -10,7 +10,7 @@ useEffect(()=>{
 }, [])
 
   return (
-    <div>
+    <div className='landing'>
       <Link to="/dashboard" className="metrics-button">
         <img id='periscopeLogo' src={Logo} />
       </Link>
