@@ -36,7 +36,7 @@ metricController.getFreeDisk = async (req, res, next) => {
 };
 
 metricController.getNodeCPU = async (req, res, next) => {
-  const query = `http://localhost:9090/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=%22%22}[1m]))by(node)&start=${startDate}&end=${currentDate}&step=1m`;
+  const query = `http://localhost:9090/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{image!=%22%22}[1m]))by(instance)&start=${startDate}&end=${currentDate}&step=1m`;
 
   try {
     console.log('in metricsController.getMetric');
@@ -50,7 +50,7 @@ metricController.getNodeCPU = async (req, res, next) => {
 };
 
 metricController.getNodeMemory = async (req, res, next) => {
-  const query = `http://localhost:9090/api/v1/query?query=sum(container_memory_usage_bytes)by(node)%20/%20sum(container_spec_memory_limit_bytes)%20by%20(node)`;
+  const query = `http://localhost:9090/api/v1/query?query=sum(container_memory_usage_bytes)by(instance)%20/%20sum(container_spec_memory_limit_bytes)%20by%20(instance)`;
 
   try {
     const response = await fetch(query);
@@ -74,6 +74,5 @@ metricController.getClusterInfo = async (req, res, next) => {
     return next(err);
   }
 };
-
 
 module.exports = metricController;

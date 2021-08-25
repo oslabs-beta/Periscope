@@ -27,6 +27,7 @@ const mainContainer = () => {
         console.log(data.clusterInfo)
         setClusterInfo(data.clusterInfo);
         setIsLoading(false);
+        console.log(data)
       });
   }, []);
 
