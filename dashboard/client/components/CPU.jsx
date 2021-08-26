@@ -50,19 +50,20 @@ const CPU = (props) => {
 
 
   return (
-    <div>
+    <div className='chart-container'>
       <h2>CPU Usage</h2>
 
       <LineChart
-        width={800}
-        height={300}
+        width={750}
+        height={275}
         data={results}
         margin={{
           top: 5,
-          right: 30,
-          left: 20,
+          right: 25,
+          left: 5,
           bottom: 5,
         }}
+        padding={{right: 0, left: 0}}
         >
         <CartesianGrid stroke={'grey'} />
         <XAxis
@@ -75,7 +76,10 @@ const CPU = (props) => {
           }}
         />
         <Tooltip content={TimeSeriesTooltip}/>
-        <Legend />
+        <Legend 
+          align='left'
+          wrapperStyle={{ paddingLeft: "30px" }}
+        />
         {lines}
       </LineChart>
     </div>

@@ -69,18 +69,21 @@ const DiskUsage = (props) => {
     }
   }
   return (
-    <div>
+    <div className='chart-container'>
       <h2>Disk Usage</h2>
       <LineChart
-        width={800}
-        height={300}
+        width={750}
+        height={275}
         data={diskUsage}
         margin={{
           top: 5,
-          right: 30,
-          left: 20,
+          right: 25,
+          left: 5,
           bottom: 5,
-        }}>
+        }}
+        padding={{right: 0, left: 0}}
+        >
+        
         <CartesianGrid stroke='grey' />
         <XAxis
           dataKey='time'
@@ -92,7 +95,10 @@ const DiskUsage = (props) => {
           }}
         />
         <Tooltip content={TimeSeriesTooltip}/>
-        <Legend />
+        <Legend 
+          align='left'
+          wrapperStyle={{ paddingLeft: "30px" }}
+        />
         {lines}
       </LineChart>
     </div>

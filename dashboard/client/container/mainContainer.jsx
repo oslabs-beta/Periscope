@@ -48,7 +48,7 @@ const mainContainer = () => {
       <div id='disk-usage' className='components'>
         <DiskUsage total={totalDisk} free={freeDisk} />
       </div>
-      <div id='logs' className='components'>
+      <div id='clusterInfo' className='components'>
         <ClusterInfo clusterInfo={clusterInfo} />
       </div>
     </div>
