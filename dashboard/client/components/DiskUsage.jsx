@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import lineColors from '../assets/colors';
-
+import TimeSeriesTooltip from './TimeSeriesTooltip';
 import {
   LineChart,
   Line,
@@ -67,13 +67,6 @@ const DiskUsage = (props) => {
         />
       );
     }
-
-
-    // create the lines for each node
-    // <Line type='monotone' dataKey='10.142.0.3:9100' stroke='#82ca9d' />;
-    // grab the names & the number of nodes from our nodes object
-    // const numNodes = Object.keys(nodes);
-    // console.log(numNodes)
   }
   return (
     <div>
@@ -98,7 +91,7 @@ const DiskUsage = (props) => {
             return `${tick}%`;
           }}
         />
-        <Tooltip />
+        <Tooltip content={TimeSeriesTooltip}/>
         <Legend />
         {lines}
       </LineChart>

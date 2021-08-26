@@ -10,7 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import CustomTooltip from './CustomTooltip';
+import MemoryTooltip from './MemoryTooltip';
 import colors from '../assets/colors';
 
 
@@ -54,7 +54,7 @@ const Memory = ({ nodeMemory }) => {
             return `${tick}%`;
           }}
         />
-          <Tooltip cursor={{ fill: 'transparent' }} content={CustomTooltip}/>
+          <Tooltip cursor={{ fill: 'transparent' }} content={MemoryTooltip}/>
           <Bar dataKey='percentageMemoryUsed' background={{ fill: 'grey' }}>
             {resultArr.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index]} />

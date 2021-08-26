@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import TimeSeriesTooltip from './TimeSeriesTooltip';
 import colors from '../assets/colors';
 
 const CPU = (props) => {
@@ -45,7 +46,6 @@ const CPU = (props) => {
         />
       );
     }
-    console.log(results);
   };
 
 
@@ -74,7 +74,7 @@ const CPU = (props) => {
             return `${tick}%`;
           }}
         />
-        <Tooltip />
+        <Tooltip content={TimeSeriesTooltip}/>
         <Legend />
         {lines}
       </LineChart>
