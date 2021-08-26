@@ -29,7 +29,6 @@ const mainContainer = () => {
 
   if (!isLoading && !called) {
     const result = [];
-    console.log(clusterInfo.data.result);
     for (let i = 1; i <= clusterInfo.data.result.length; i++){
       // create nodes 1 through x based on internal Ip addresses
       result.push(clusterInfo.data.result[i - 1].metric.internal_ip);
@@ -45,13 +44,13 @@ const mainContainer = () => {
     :
     <div className='main-container'>
       <div id='CPU' className='components'>
-        <CPU cpu={cpu} />
+        <CPU cpu={cpu} nodeNums={nodeNums}/>
       </div>
       <div className='components' id='Memory'>
         <Memory nodeMemory={nodeMemory} nodeNums={nodeNums} />
       </div>
       <div id='disk-usage' className='components'>
-        <DiskUsage total={totalDisk} free={freeDisk} />
+        <DiskUsage total={totalDisk} free={freeDisk} nodeNums={nodeNums} />
       </div>
       <div id='logs' className='components'>
         <ClusterInfo clusterInfo={clusterInfo} />
