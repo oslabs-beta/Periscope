@@ -24,7 +24,7 @@ const Memory = ({ nodeMemory }) => {
     nodes.forEach((node, i) => {
       const dataPoint = {};
       dataPoint.node = 'node' + (i + 1);
-      dataPoint.percentageMemoryUsed = +parseFloat(node.value[1]).toFixed(4)*100;
+      dataPoint.percentageMemoryUsed = (parseFloat(node.value[1])*100).toFixed(2);
       resultArr.push(dataPoint);
     });
     if (render === false) {

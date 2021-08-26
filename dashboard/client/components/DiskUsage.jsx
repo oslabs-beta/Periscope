@@ -49,7 +49,7 @@ const DiskUsage = (props) => {
         // (total size - value at each time) / total size
         const totalDisk = nodes[nodeNum];
         const freeDiskSpace = values[k][1];
-        data[k][nodeNum] = ((totalDisk - freeDiskSpace) / totalDisk).toFixed(4)*100;
+        data[k][nodeNum] = (((totalDisk - freeDiskSpace) / totalDisk)*100).toFixed(2);
       }
     }
     if (render === false) {

@@ -25,8 +25,8 @@ const CPU = (props) => {
       let current = new Date(x[0] * 1000);
       dataPoint.time = current.toLocaleString();
       for (let j = 0; j < nodes.length; j++) {
-        dataPoint[`node${j + 1}`] = parseFloat(nodes[j].values[i][1]).toFixed(
-          3)*100;
+        dataPoint[`node${j + 1}`] = parseFloat(nodes[j].values[i][1]*100).toFixed(
+          2);
       }
       resultArr.push(dataPoint);
     });
