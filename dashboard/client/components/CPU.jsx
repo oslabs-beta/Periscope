@@ -31,7 +31,7 @@ const CPU = (props) => {
        const internal_ip = nodes[j].metric.instance.slice(0, len);
        // find position of node in reference list
        const position = nodeNums.findIndex((ip) => ip === internal_ip);
-        dataPoint[`node${position + 1}`] = (parseFloat(nodes[j].values[i][1])*100).toFixed(
+        dataPoint[`node${position + 1}`] = +(parseFloat(nodes[j].values[i][1])*100).toFixed(
           2);
       }
       resultArr.push(dataPoint);
@@ -69,7 +69,6 @@ const CPU = (props) => {
           left: 5,
           bottom: 5,
         }}
-        padding={{right: 0, left: 0}}
         >
         <CartesianGrid stroke={'grey'} />
         <XAxis
