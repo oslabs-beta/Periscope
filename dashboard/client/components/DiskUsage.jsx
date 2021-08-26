@@ -22,24 +22,36 @@ const DiskUsage = (props) => {
   if (props.free.data) {
     const total = props.total.data?.result;
     const free = props.free.data?.result;
-    const nodes = props.total.data.result;
+    const nodes = {};
+    const nodeNums = props.nodeNums;
     // loop through freediskspace and get the times
 
     // loops through totalDiskSpace query and pushes the name of node and total diskspace of node into an object
     for (let i = 0; i < total.length; i++) {
       // push each node #: diskSpace
-      nodes[`node${i + 1}`] = total[i].value[1];
+
+      // match length of instance to length of ip addresses in node list
+      const len = nodeNums[0].length;
+      const internal_ip = total[i].metric.instance.slice(0, len);
+      // // find position of node in reference list
+      const position = nodeNums.findIndex((ip) => ip === internal_ip);
+
+      nodes[`node${position + 1}`] = total[i].value[1];
     }
 
     // loops through FreeDiskSpace and sends time and value @ time to new object
     for (let i = 0; i < free.length; i++) {
-      const nodeNum = `node${i + 1}`;
       const values = free[i].values;
+      //find correct nodeNum
+      // match length of instance to length of ip addresses in node list
+      const len = nodeNums[0].length;
+      const internal_ip = free[i].metric.instance.slice(0, len);
+      // // find position of node in reference list
+      const position = nodeNums.findIndex((ip) => ip === internal_ip);
 
       // grab all the times from the first index of the array
       if (i === 0) {
         for (let j = 0; j < values.length; j++) {
-          // grab the time: values[j][0] and convert time to human readable format
           const time = new Date(values[j][0] * 1000).toLocaleString();
           data.push({ time: time });
         }
@@ -47,16 +59,18 @@ const DiskUsage = (props) => {
       // put the node # & it's value in each time object
       for (let k = 0; k < data.length; k++) {
         // (total size - value at each time) / total size
-        const totalDisk = nodes[nodeNum];
+        const totalDisk = nodes[`node${position + 1}`];
         const freeDiskSpace = values[k][1];
-        data[k][nodeNum] = (((totalDisk - freeDiskSpace) / totalDisk)*100).toFixed(2);
+        data[k][`node${position + 1}`] = (((totalDisk - freeDiskSpace) / totalDisk)*100).toFixed(2);
       }
     }
+
     if (render === false) {
       setDiskUsage(data);
       setRender(true);
     }
-    for (let i = 0; i < nodes.length; i++) {
+
+    for (let i = 0; i < total.length; i++) {
       lines.push(
         <Line
           type='monotone'

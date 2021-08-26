@@ -14,7 +14,7 @@ import MemoryTooltip from './MemoryTooltip';
 import colors from '../assets/colors';
 
 
-const Memory = ({ nodeMemory }) => {
+const Memory = ({ nodeMemory, nodeNums }) => {
   // if (!nodeMemory.data) return null;
   const resultArr = [];
   const [result, setResult] = useState([]);
@@ -22,10 +22,17 @@ const Memory = ({ nodeMemory }) => {
   if (nodeMemory.data) {
     const nodes = nodeMemory.data.result;
     nodes.forEach((node, i) => {
+      // match length of instance to length of ip addresses in node list
+      const len = nodeNums[0].length;
+      const internal_ip = node.metric.instance.slice(0, len);
+      // find position of node in reference list
+      const position = nodeNums.findIndex((ip) => ip === internal_ip);
       const dataPoint = {};
-      dataPoint.node = 'node' + (i + 1);
+
+      dataPoint.node = 'node' + (position + 1);
+      dataPoint.ip = internal_ip;
       dataPoint.percentageMemoryUsed = (parseFloat(node.value[1])*100).toFixed(2);
-      resultArr.push(dataPoint);
+      resultArr[position] = dataPoint;
     });
     if (render === false) {
       setResult(resultArr);
