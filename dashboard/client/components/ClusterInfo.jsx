@@ -8,7 +8,7 @@ const ClusterInfo = ({ clusterInfo }) => {
 
     // component for each node
     const nodes = [];
-    console.log('nodes', nodes);
+    // console.log('nodes', nodes);
     for (let i = 0; i < clusterInfoArr.length; i++) {
       const nodeName = clusterInfoArr[i].metric.node;
       const nodeNumber = 'node' + (i + 1);
@@ -29,7 +29,7 @@ const ClusterInfo = ({ clusterInfo }) => {
       //   />
       // );
     }
-    console.log('nodes', nodes);
+    // console.log('nodes', nodes);
 
     // const data = React.useMemo(() => {
     //   nodes;
