@@ -13,25 +13,30 @@ const mainContainer = () => {
   const [nodeMemory, setNodeMemory] = useState({});
   const [clusterInfo, setClusterInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [nodeNums, setNodeNums] = useState([]);
+  const [called, setCalled] = useState(false);
 
-
-
-  useEffect(() => {
-    fetch('/metrics')
-      .then((res) => res.json())
-      .then((data) => {
-        setCPU(data.nodeCPU);
-        setTotalDisk(data.totalDisk);
-        setFreeDisk(data.freeDisk);
-        setNodeMemory(data.nodeMemory);
-        console.log(data.clusterInfo)
-        setClusterInfo(data.clusterInfo);
-        setIsLoading(false);
-        console.log(data)
-      });
+  useEffect(async () => {
+    const response = await fetch('/metrics');
+    const data = await response.json();
+    setCPU(data.nodeCPU);
+    setTotalDisk(data.totalDisk);
+    setFreeDisk(data.freeDisk);
+    setNodeMemory(data.nodeMemory);
+    setClusterInfo(data.clusterInfo);
+    setIsLoading(false);
   }, []);
 
-
+  if (!isLoading && !called) {
+    const result = [];
+    console.log(clusterInfo.data.result);
+    for (let i = 1; i <= clusterInfo.data.result.length; i++){
+      // create nodes 1 through x based on internal Ip addresses
+      result.push(clusterInfo.data.result[i - 1].metric.internal_ip);
+    }
+    setNodeNums(result);
+    setCalled(true);
+  }
 
   return (
     (isLoading)
@@ -43,7 +48,7 @@ const mainContainer = () => {
         <CPU cpu={cpu} />
       </div>
       <div className='components' id='Memory'>
-        <Memory nodeMemory={nodeMemory} />
+        <Memory nodeMemory={nodeMemory} nodeNums={nodeNums} />
       </div>
       <div id='disk-usage' className='components'>
         <DiskUsage total={totalDisk} free={freeDisk} />

@@ -19,13 +19,12 @@ const CPU = (props) => {
   const [render, setRender] = useState(false);
   if (props.cpu.data) {
     const nodes = props.cpu.data.result;
-    // transform data into percentages
     nodes[0].values.forEach((x, i) => {
       const dataPoint = {};
       let current = new Date(x[0] * 1000);
       dataPoint.time = current.toLocaleString();
       for (let j = 0; j < nodes.length; j++) {
-        dataPoint[`node${j + 1}`] = parseFloat(nodes[j].values[i][1]*100).toFixed(
+        dataPoint[`node${j + 1}`] = (parseFloat(nodes[j].values[i][1])*100).toFixed(
           2);
       }
       resultArr.push(dataPoint);
