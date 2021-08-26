@@ -1,6 +1,6 @@
 .main-container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   font-family: Roboto, sans-serif;
 }
 
@@ -24,6 +24,27 @@ button {
 #pieChart {
   padding-left: 38px;
 }
+.table {
+  display: flex;
+  justify-content: center;
+}
+
+td {
+  margin: 0;
+  padding-bottom: 10px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 10px;
+  /* border-bottom: 0.5px solid rgb(100, 100, 117, 0.5); */
+}
+
+tr:nth-of-type(odd) {
+  background-color: #25212c;
+}
+tr > th {
+  background-color: #1f1b24;
+  padding-bottom: 10px;
+}
 
 #barChart {
   padding-left: 30px;
@@ -35,8 +56,6 @@ button {
   margin-right: auto;
   width: 50%;
 }
-
-
 
 .recharts {
   font-size: 1 rem;

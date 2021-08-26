@@ -45,7 +45,7 @@ const ClusterInfo = ({ clusterInfo }) => {
         accessor: 'nodeName',
       },
       {
-        Header: 'Interal Ip',
+        Header: 'Internal Ip',
         accessor: 'internal_ip',
       },
     ];
@@ -70,9 +70,11 @@ const ClusterInfo = ({ clusterInfo }) => {
     // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     //   useTable({ columns, data });
     return (
-      <div className='table'>
+      <div>
         <h2>Cluster Info</h2>
-        <Table columns={columns} data={nodes} />
+        <div className='table'>
+          <Table columns={columns} data={nodes} />
+        </div>
       </div>
     );
   }
