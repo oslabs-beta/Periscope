@@ -1,5 +1,6 @@
-import React from 'react'
-import {useTable} from 'react-table'
+import React from 'react';
+import { useTable } from 'react-table';
+import lineColors from '../assets/colors';
 
 export default function Table({ columns, data }) {
   const {
@@ -25,13 +26,17 @@ export default function Table({ columns, data }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
+          {rows.map((row, index) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+                {row.cells.map((cell, i) => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    <td
+                      style={{ color: lineColors[index] }}
+                      {...cell.getCellProps()}>
+                      {cell.render('Cell')}
+                    </td>
                   );
                 })}
               </tr>
