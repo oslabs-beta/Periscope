@@ -31,7 +31,7 @@ const CPU = (props) => {
        const internal_ip = nodes[j].metric.instance.slice(0, len);
        // find position of node in reference list
        const position = nodeNums.findIndex((ip) => ip === internal_ip);
-        dataPoint[`node${position + 1}`] = (parseFloat(nodes[j].values[i][1])*100).toFixed(
+        dataPoint[`node${position + 1}`] = +(parseFloat(nodes[j].values[i][1])*100).toFixed(
           2);
       }
       resultArr.push(dataPoint);
@@ -56,17 +56,17 @@ const CPU = (props) => {
 
 
   return (
-    <div>
+    <div className='chart-container'>
       <h2>CPU Usage</h2>
 
       <LineChart
-        width={800}
-        height={300}
+        width={750}
+        height={275}
         data={results}
         margin={{
           top: 5,
-          right: 30,
-          left: 20,
+          right: 25,
+          left: 5,
           bottom: 5,
         }}
         >
@@ -81,7 +81,10 @@ const CPU = (props) => {
           }}
         />
         <Tooltip content={TimeSeriesTooltip}/>
-        <Legend />
+        <Legend 
+          align='left'
+          wrapperStyle={{ paddingLeft: "30px" }}
+        />
         {lines}
       </LineChart>
     </div>

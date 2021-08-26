@@ -41,17 +41,17 @@ const Memory = ({ nodeMemory, nodeNums }) => {
   }
 
   return (
-    <div>
+    <div className='memory-container'>
       <h2>Memory Usage</h2>
       <div id='barChart'>
         <BarChart
           width={500}
-          height={300}
+          height={275}
           data={result}
           margin={{
             top: 5,
-            right: 30,
-            left: 20,
+            right: 25,
+            left: 5,
             bottom: 5,
           }}
           barSize={20}>

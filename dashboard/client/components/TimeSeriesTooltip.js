@@ -7,7 +7,7 @@ const style = {
   border: 'none',
   borderRadius: '5px',
   padding: '5px',
-  color: 'darkgray',
+  color: 'gray',
   textAlign: 'left',
   fontSize: '14px',
 }
