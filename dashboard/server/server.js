@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+
 const path = require('path');
 const prometheusRouter = require('./routes/prometheusRouter');
 const metricsRouter = require('./routes/metricsRouter');
@@ -7,8 +7,7 @@ const PORT = 3000;
 const { ApolloServer } = require('apollo-server-express');
 const schema = require('./graphQL/schemas.js');
 
-
-
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
@@ -33,11 +32,9 @@ app.get('/', (req, res) => {
     .sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
-
-
-app.use('/*', (req, res) => {
-  return res.sendFile(path.resolve(__dirname, '../client/index.html'));
-});
+// app.use('/*', (req, res) => {
+//   return res.sendFile(path.resolve(__dirname, '../client/index.html'));
+// });
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
