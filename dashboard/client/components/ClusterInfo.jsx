@@ -4,8 +4,8 @@ import { useTable } from 'react-table';
 
 const ClusterInfo = ({ clusterInfo }) => {
   if (clusterInfo.data) {
+    console.log(clusterInfo)
     const clusterInfoArr = clusterInfo.data.result;
-
     // component for each node
     const nodes = [];
     // console.log('nodes', nodes);

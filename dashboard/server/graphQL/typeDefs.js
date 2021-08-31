@@ -12,7 +12,8 @@ type ClusterInfoMetric {
   node: String
 }
 type ClusterInfoNode {
-  metric: ClusterInfoMetric
+  metric: ClusterInfoMetric,
+  value: [String]
 }
 
 type NodeInfo {
@@ -26,16 +27,15 @@ type Node {
   value: [String]
   values: [[String]]
 }
-
 type Instance {
   instance: String
 }
 
 type Query {
   getClusterInfo: ClusterInfo
-  getNodeCpu(startTime: Int, endTime: Int, step: String): NodeInfo,
+  getNodeCpu(startTime: String, endTime: String, step: String): NodeInfo,
   getNodeMemory: NodeInfo,
   getTotalDiskSpace: NodeInfo,
-  getFreeDiskSpace(startTime: Int, endTime: Int, step: String): NodeInfo,
+  getFreeDiskSpace(startTime: String, endTime: String, step: String): NodeInfo,
 }
 `;
