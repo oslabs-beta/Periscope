@@ -16,12 +16,11 @@ const mainContainerGraphQL = () => {
   const [called, setCalled] = useState(false);
 
   const sixHours = 21600;
-  const endTimeNum = Math.floor(Date.now() / 1000);
+  const endTime = Math.floor(Date.now() / 1000);
   // const startTime = '1630286575';
   // const endTime = new Date.now() / 1000;
-  const startTimeNum = endTimeNum - sixHours;
-  const startTime = startTimeNum.toString();
-  const endTime = endTimeNum.toString();
+  const startTime = endTime - sixHours;
+  
 
   const step = '5m';
 
@@ -80,7 +79,6 @@ const mainContainerGraphQL = () => {
   }`;
 
   useEffect(() => {
-    console.log('times: ', startTime, endTime);
     fetch('/graphql', {
       method: 'POST',
       headers: {

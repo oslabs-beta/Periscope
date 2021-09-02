@@ -29,7 +29,10 @@ type Node {
 }
 type Instance {
   instance: String
+  pod: String
 }
+
+
 
 type Query {
   getClusterInfo: ClusterInfo
@@ -37,5 +40,8 @@ type Query {
   getNodeMemory: NodeInfo,
   getTotalDiskSpace: NodeInfo,
   getFreeDiskSpace(startTime: String, endTime: String, step: String): NodeInfo,
+  getPodCpu(startTime: String, endTime: String, step: String): NodeInfo,
+  getPodMemorySeries(startTime: String, endTime: String, step: String): NodeInfo,
+  getPodMemoryCurrent: NodeInfo,
 }
 `;
