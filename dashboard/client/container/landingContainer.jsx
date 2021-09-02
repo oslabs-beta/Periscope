@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import Logo from '../assets/periscopeLogoTransparent.png';
 
 const LandingContainer = () => {
-  useEffect(() => {
-    fetch('/prometheus').then((data) => {
-      console.log('connected to prometheus', data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch('/prometheus').then((data) => {
+  //     console.log('connected to prometheus', data);
+  //   });
+  // }, []);
 
   return (
     <div className='landing'>
