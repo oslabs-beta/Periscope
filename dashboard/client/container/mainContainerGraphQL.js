@@ -31,7 +31,7 @@ const mainContainerGraphQL = () => {
       },
       body: JSON.stringify({
         query: `{
-          getFreeDiskSpace(startTime: "1630286575" , endTime: "1630358575", step: "5m") {
+          getFreeDiskSpace(startTime: "1630524326" , endTime: "1630596330", step: "5m") {
             data {
               result {
                 metric {
@@ -41,7 +41,7 @@ const mainContainerGraphQL = () => {
               }
             }
           }
-          getNodeCpu(startTime: "1630286575", endTime: "1630358575", step: "5m") {
+          getNodeCpu(startTime: "1630524326", endTime: "1630596330", step: "5m") {
             data {
               result {
                 metric {
