@@ -118,6 +118,13 @@ class PrometheusAPI extends RESTDataSource {
     const data = await this.get(query);
     return data;
   }
+
+  async getPodInfo() {
+    console.log('get pod info called');
+    let query = `query?query=kube_pod_info`;
+    const data = await this.get(query);
+    return data;
+  }
 }
 
 module.exports = PrometheusAPI;

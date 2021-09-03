@@ -34,6 +34,10 @@ const resolvers = {
       console.log('query for podmemory current')
       return dataSources.prometheusAPI.getPodMemoryCurrent();
     },
+    getPodInfo: async (parent, args, { dataSources }, info) => {
+      console.log('query for get pod info')
+      return dataSources.prometheusAPI.getPodInfo();
+    }
   },
 };
 
