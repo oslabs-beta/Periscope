@@ -14,6 +14,9 @@ const LandingContainer = () => {
       <Link to='/dashboard' className='metrics-button'>
         <img id='periscopeLogo' src={Logo} />
       </Link>
+      <Link to='/podDashboard' className='metrics-button'>
+        <button>PODS</button>
+      </Link>
     </div>
   );
 };

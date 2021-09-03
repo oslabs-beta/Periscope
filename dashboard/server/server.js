@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 
-// app.use('/prometheus', prometheusRouter);
+app.use('/prometheus', prometheusRouter);
 
 // app.use('/metrics', metricsRouter);
 
