@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import podMemoryCurrent from '../components/podMemoryCurrent'
+import podMemoryCurrent from '../components/podMemoryCurrent.jsx';
 
 const podContainer = () => {
   const [podCpu, setPodCpu] = useState({});
@@ -82,11 +82,11 @@ const podContainer = () => {
         setIsLoading(false);
       });
   }, []);
-  
+
   //cpuDataSetObject: {pod1: [timeseries data]}
 
   //<cpu component data={dataSetObject}>
-  //function coudl check first if the pod exists as an key on the object. and if it does delete. and if it doesn't add. it 
+  //function coudl check first if the pod exists as an key on the object. and if it does delete. and if it doesn't add. it
   //cpuDataSetObect = ...cpuDataSetObject{pod2: [timeSeriesData]}
   //onclick if cpuDataSetObject[pod2] then delete
 
@@ -106,9 +106,7 @@ const podContainer = () => {
     setCalled(true);
   }
 
-  return (
-    <div>pod Container</div>
-  )
+  return <div>pod Container</div>;
 };
 
 export default podContainer;
