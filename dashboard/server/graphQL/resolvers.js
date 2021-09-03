@@ -21,6 +21,22 @@ const resolvers = {
     getFreeDiskSpace: async (parent, {startTime, endTime, step}, { dataSources }, info) => {
       console.log('query for free disk space')
       return dataSources.prometheusAPI.getFreeDiskSpace(startTime, endTime, step);
+    },
+    getPodCpu: async (parent, {startTime, endTime, step}, { dataSources }, info) => {
+      console.log('query for pod cpu')
+      return dataSources.prometheusAPI.getPodCpu(startTime, endTime, step);
+    },
+    getPodMemorySeries: async (parent, {startTime, endTime, step}, { dataSources }, info) => {
+      console.log('query for podmemory series')
+      return dataSources.prometheusAPI.getPodMemorySeries(startTime, endTime, step);
+    },
+    getPodMemoryCurrent: async (parent, args, { dataSources }, info) => {
+      console.log('query for podmemory current')
+      return dataSources.prometheusAPI.getPodMemoryCurrent();
+    },
+    getPodInfo: async (parent, args, { dataSources }, info) => {
+      console.log('query for get pod info')
+      return dataSources.prometheusAPI.getPodInfo();
     }
   },
 };

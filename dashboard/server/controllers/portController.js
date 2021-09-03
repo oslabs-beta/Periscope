@@ -15,7 +15,12 @@ let isAlertUp = false;
 portController.portForward =  async (req, res, next) => {
   try {
     const process =  await spawn('kubectl', ['--namespace=default', 'port-forward', 'prometheus-prometheus-kube-prometheus-prometheus-0', '9090']);
-
+    const process2 = spawn('kubectl', [
+      '--namespace=default',
+      'port-forward',
+      'services/alertmanager-operated',
+      '9093',
+    ])
     await process.stdout.on('data', data => {
       console.log(`stdout: ${data}`);
       isPromUp = true;
