@@ -17,21 +17,25 @@ class PrometheusAPI extends RESTDataSource {
   //     resolve(true);
   //   }
 
-  //   try {
-  //     console.log('in PortPrometheus');
-  //     const process =  spawn('kubectl', [
-  //       '--namespace=default',
-  //       'port-forward',
-  //       'prometheus-prometheus-kube-prometheus-prometheus-0',
-  //       '9090',
-  //     ]);
+    // try {
+    //   console.log('in PortPrometheus');
+    //   const process =  spawn(
+    //     'kubectl',
+    //     [
+    //     '--namespace=default',
+    //     'port-forward',
+    //     'prometheus-prometheus-kube-prometheus-prometheus-0',
+    //     '9090',
+    //   ]);
 
-  //     process.stdout.on('data', (data) => {
-  //       console.log(`stdout: ${data}`);
-  //       this.isPrometheusUp = true;
-  //       resolve(true);
-  //     });
+      
 
+    //   process.stdout.on('data', (data) => {
+    //     console.log(`stdout: ${data}`);
+    //     this.isPrometheusUp = true;
+    //     resolve(true);
+    //   });
+    // }
   //     process.stderr.on('data', (err) => {
   //       console.log(`stderr: ${err}`);
   //     });
@@ -87,7 +91,7 @@ class PrometheusAPI extends RESTDataSource {
     const data = await this.get(query);
     return data;
   }
-  
+
   async getFreeDiskSpace( startTime, endTime, step ) {
     console.log('get free disk space called');
     // const checkPort = await this.portPrometheus();
