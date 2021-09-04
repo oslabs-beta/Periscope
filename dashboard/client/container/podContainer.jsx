@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PodMemoryCurrentComponent from '../components/PodMemoryCurrentComponent.jsx';
+import PodCPU from '../components/podCPU.jsx';
+import PodInfoRows from '../components/PodInfoRows.jsx';
 
 const podContainer = () => {
   const [podCpu, setPodCpu] = useState({});
@@ -10,23 +12,15 @@ const podContainer = () => {
   const [podNums, setPodNums] = useState({});
   const [called, setCalled] = useState(false);
   const [podNames, setPodNames] = useState([]);
+  const [clickedArray, setClickedArray] = useState([]);
 
-  const newclick = (arg) => {
-    console.log('clicked', arg);
-   
-    
-  };
-  //container data to passdown 
-  //if you clicked whichever pod
-  //that would update that piece of state.
-  //so that piece of data would d
+  
+  // time variables
   const sixHours = 21600;
   const endTime = Math.floor(Date.now() / 1000);
-  // const startTime = '1630286575';
-  // const endTime = new Date.now() / 1000;
   const startTime = endTime - sixHours;
   const step = '5m';
-
+  // query to graphql server
   const query = `{
     getPodCpu(startTime: "${startTime}", endTime: "${endTime}", step: "${step}") {
       data {
@@ -71,6 +65,29 @@ const podContainer = () => {
     }
   }`;
 
+  const newClickedArray = [];
+  const newClick = (arg) => {
+    console.log('clicked', arg);
+    let found = false;
+    for (let i = 0; i < newClickedArray.length; i++) {
+      if (newClickedArray[i].podName === arg) {
+        newClickedArray.splice(i, 1);
+        setClickedArray(newClickedArray);
+        found = true;
+        break;
+      }
+    }
+    if(!found) {
+      console.log('podnums', podInfoNumbers)
+      console.log('podnums[arg]', podInfoNumbers[arg])
+      newClickedArray.push(podInfoNumbers[arg])
+      setClickedArray(newClickedArray);
+    }
+    console.log('new clicked array: ', newClickedArray);
+    console.log('clicked array: ', clickedArray);
+  };
+
+  // fetch to graphql backend, set state with resulting data
   useEffect(() => {
     fetch('/graphql', {
       method: 'POST',
@@ -89,25 +106,16 @@ const podContainer = () => {
         setPodMemorySeries(data.getPodMemorySeries);
         setPodMemoryCurrent(data.getPodMemoryCurrent);
         setPodInfo(data.getPodInfo);
+        setClickedArray(newClickedArray)
         setIsLoading(false);
       });
   }, []);
 
-  
-
-
-  //cpuDataSetObject: {pod1: [timeseries data]}
-
-  //<cpu component data={dataSetObject}>
-  //function coudl check first if the pod exists as an key on the object. and if it does delete. and if it doesn't add. it
-  //cpuDataSetObect = ...cpuDataSetObject{pod2: [timeSeriesData]}
-  //onclick if cpuDataSetObject[pod2] then delete
-
+  // if data is loaded and data states are set, but called state is false
   if (!isLoading && !called) {
-    // console.log('podinfo', podInfo);
-    const podInfoNumbers = {};
-    let counter = 1;
-    const podList = [];
+    const podInfoNumbers = {}; // empty object to store pod info with names
+    let counter = 1; // counter to keep track of non-null pods
+    const podList = []; // array of pod list items for rendering
    
     for (let i = 0; i < podInfo.data.result.length; i++) {
       // create nodes 1 through x based on internal Ip addresses
@@ -119,9 +127,10 @@ const podContainer = () => {
           pod_ip: pod.pod_ip,
           name: `pod${counter}`,
           number: counter,
-          clicked: false,
+          podName: pod.pod
+          // clicked: false,
         };
-        podList.push(<li onClick={()=>{newclick(pod.pod)}} key={i}>{podInfoNumbers[pod.pod].name} {pod.pod}</li>)
+        // podList.push(<li onClick={()=>{newclick(pod.pod)}} key={i}>{podInfoNumbers[pod.pod].name} {pod.pod}</li>)
         counter++
       }
     }
@@ -131,19 +140,23 @@ const podContainer = () => {
       if (podInfoNumbers[cpuPod]) podInfoNumbers[cpuPod].cpuValues = podCpu.data.result[i].values;
       let memPod = podMemorySeries.data.result[i].metric.pod;
       if (podInfoNumbers[memPod]) podInfoNumbers[memPod].memorySeriesValues = podMemorySeries.data.result[i].values;
-      
-    // console.log('object of pod names: ', podInfoNumbers);
+    } 
+
+    // onclick function to keep track of selected pods 
+    
+    
+    // create and set podlist
+    
     setPodNums(podInfoNumbers);
     setPodNames(podList);
     setCalled(true);
-  //
-
   }
-}
+
 
   return (<div>
-    <ul>{podNames}</ul>
-    <PodMemoryCurrentComponent podMemoryCurrent={podMemoryCurrent} podNums={podNums}/>
+    <PodInfoRows newClick={newClick} podNums={podNums}/>
+    <PodMemoryCurrentComponent podMemoryCurrent={podMemoryCurrent} podNums={podNums} />
+    <PodCPU clickedArray={clickedArray} />
   </div>)
 };
 
