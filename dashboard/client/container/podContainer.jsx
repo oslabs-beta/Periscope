@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PodMemoryCurrentComponent from '../components/PodMemoryCurrentComponent.jsx';
-import PodCPU from '../components/podCPU.jsx';
+import PodCPU from '../components/PodCPU.jsx';
 import PodInfoRows from '../components/PodInfoRows.jsx';
 
 const podContainer = () => {
@@ -13,6 +13,7 @@ const podContainer = () => {
   const [called, setCalled] = useState(false);
   const [podNames, setPodNames] = useState([]);
   const [clickedArray, setClickedArray] = useState([]);
+  const [render, setRender] = useState(false);
 
   
   // time variables
@@ -65,27 +66,7 @@ const podContainer = () => {
     }
   }`;
 
-  const newClickedArray = [];
-  const newClick = (arg) => {
-    console.log('clicked', arg);
-    let found = false;
-    for (let i = 0; i < newClickedArray.length; i++) {
-      if (newClickedArray[i].podName === arg) {
-        newClickedArray.splice(i, 1);
-        setClickedArray(newClickedArray);
-        found = true;
-        break;
-      }
-    }
-    if(!found) {
-      console.log('podnums', podInfoNumbers)
-      console.log('podnums[arg]', podInfoNumbers[arg])
-      newClickedArray.push(podInfoNumbers[arg])
-      setClickedArray(newClickedArray);
-    }
-    console.log('new clicked array: ', newClickedArray);
-    console.log('clicked array: ', clickedArray);
-  };
+  
 
   // fetch to graphql backend, set state with resulting data
   useEffect(() => {
@@ -106,7 +87,6 @@ const podContainer = () => {
         setPodMemorySeries(data.getPodMemorySeries);
         setPodMemoryCurrent(data.getPodMemoryCurrent);
         setPodInfo(data.getPodInfo);
-        setClickedArray(newClickedArray)
         setIsLoading(false);
       });
   }, []);
@@ -154,7 +134,7 @@ const podContainer = () => {
 
 
   return (<div>
-    <PodInfoRows newClick={newClick} podNums={podNums}/>
+    <PodInfoRows clickedArray={clickedArray} setClickedArray={setClickedArray} podNums={podNums} />
     <PodMemoryCurrentComponent podMemoryCurrent={podMemoryCurrent} podNums={podNums} />
     <PodCPU clickedArray={clickedArray} />
   </div>)

@@ -12,28 +12,37 @@ import {
 import TimeSeriesTooltip from './TimeSeriesTooltip';
 import colors from '../assets/colors';
 
-const PodCPU = ({ clickedArray }) =>{
+const PodCPU = ({ clickedArray }) => {
   const [results, setResults] = useState([]);
-  const [render, setRender] = useState(false); 
-  const lines = []
-  const resultArr = [];
+  const [render, setRender] = useState(false);
+  const [clickedLength, setClickedLength] = useState(0);
+  const lines = [];
+  const resultArray = [];
 
-  console.log(clickedArray)
-  if (clickedArray.length > 0) { 
-   
+  if (clickedLength !== clickedArray.length) {
+    setRender(false);
+  }
+
+  console.log('clicked array in podCpu', clickedArray);
+  console.log('set render', render);
+
+  if (clickedArray.length > 0) {
     clickedArray[0].cpuValues.forEach((x, i) => {
       const dataPoint = {};
       let time = new Date(x[0] * 1000);
       dataPoint.time = time.toLocaleString();
-      
+
       for (let j = 0; j < clickedArray.length; j++) {
-        dataPoint[clickedArray.name] = +(parseFloat(clickedArray[j].cpuValues[i][1])*100).toFixedataPoint(2);
+        dataPoint[clickedArray[j].name] = +(
+          parseFloat(clickedArray[j].cpuValues[i][1]) * 100
+        ).toFixed(2);
       }
-      resultArray.push(dataPoint) 
+      resultArray.push(dataPoint);
     });
 
     if (render === false) {
-      setResults(resultArr);
+      console.log(resultArray);
+      setResults(resultArray);
       setRender(true);
     }
 
@@ -48,10 +57,7 @@ const PodCPU = ({ clickedArray }) =>{
         />
       );
     }
-
   }
-
-  
 
   return (
     <div className='chart-container'>
@@ -66,28 +72,24 @@ const PodCPU = ({ clickedArray }) =>{
           right: 25,
           left: 5,
           bottom: 5,
-        }}
-        >
+        }}>
         <CartesianGrid stroke={'grey'} />
         <XAxis
           tick={{ fontSize: 10 }}
           dataKey='time'
           ticks={[20, 40, 60, 80, 100]}
         />
-        <YAxis tickFormatter={(tick) => {
+        <YAxis
+          tickFormatter={(tick) => {
             return `${tick}%`;
           }}
         />
-        <Tooltip content={TimeSeriesTooltip}/>
-        <Legend 
-          align='left'
-          wrapperStyle={{ paddingLeft: "30px" }}
-        />
+        <Tooltip content={TimeSeriesTooltip} />
+        <Legend align='left' wrapperStyle={{ paddingLeft: '30px' }} />
         {lines}
       </LineChart>
     </div>
   );
 };
-
 
 export default PodCPU;
