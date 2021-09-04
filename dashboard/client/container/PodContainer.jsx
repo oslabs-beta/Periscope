@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PodMemoryCurrentComponent from '../components/PodMemoryCurrentComponent.jsx';
 
-const podContainer = () => {
+const PodContainer = () => {
   const [podCpu, setPodCpu] = useState({});
   const [podMemorySeries, setPodMemorySeries] = useState({});
   const [podMemoryCurrent, setPodMemoryCurrent] = useState({});
@@ -13,10 +13,10 @@ const podContainer = () => {
 
   const newclick = (arg) => {
     console.log('clicked', arg);
-   
-    
+
+
   };
-  //container data to passdown 
+  //container data to passdown
   //if you clicked whichever pod
   //that would update that piece of state.
   //so that piece of data would d
@@ -93,7 +93,7 @@ const podContainer = () => {
       });
   }, []);
 
-  
+
 
 
   //cpuDataSetObject: {pod1: [timeseries data]}
@@ -108,7 +108,7 @@ const podContainer = () => {
     const podInfoNumbers = {};
     let counter = 1;
     const podList = [];
-   
+
     for (let i = 0; i < podInfo.data.result.length; i++) {
       // create nodes 1 through x based on internal Ip addresses
       let pod = podInfo.data.result[i].metric;
@@ -131,7 +131,7 @@ const podContainer = () => {
       if (podInfoNumbers[cpuPod]) podInfoNumbers[cpuPod].cpuValues = podCpu.data.result[i].values;
       let memPod = podMemorySeries.data.result[i].metric.pod;
       if (podInfoNumbers[memPod]) podInfoNumbers[memPod].memorySeriesValues = podMemorySeries.data.result[i].values;
-      
+
     // console.log('object of pod names: ', podInfoNumbers);
     setPodNums(podInfoNumbers);
     setPodNames(podList);
@@ -147,4 +147,4 @@ const podContainer = () => {
   </div>)
 };
 
-export default podContainer;
+export default PodContainer;
