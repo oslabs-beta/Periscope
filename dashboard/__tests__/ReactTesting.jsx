@@ -2,44 +2,49 @@
  * @jest-environment jsdom
  */
 
-/**
- * render: lets us render the component (like how React would)
- * screen: Your utility for finding elements the same way the user does
- **/
-
-import { render, screen } from '@testing-library/react';
-// import React so you can use JSX (React.createElement) in your test
+import { render, screen, cleanup } from '@testing-library/react';
 import React from 'react';
+import userEvent from '@testing-library/user-event'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import App from '../client/App';
 import LandingContainer from '../client/container/landingContainer';
 import NodeContainer from '../client/container/NodeContainer';
 import PodContainer from '../client/container/PodContainer';
 import fetch from 'node-fetch';
+
+describe('App Container', () => {
+
+  beforeEach (() =>
+      render(<Router>
+              <App />
+            </Router>
+            )
+    );
+
+  test('Homepage link points to the correct page and has loading image', () => {
+    const dashboard = screen.getByRole('link', { name: '' });
+    userEvent.click(dashboard);
+    const image = document.querySelector("img")
+    expect(image.id).toBe('loading');
+  });
+
+ // ADD ONCE THE NAVBAR
+
+});
 
 
 describe('Node Container', () => {
   test('renders Container component', () => {
     render(<NodeContainer />);
   });
+
 });
 
 describe('Pod Container', () => {
 
-  const testProps = {
-    currentMemory = {{[{metric:{instance: 1}}, {values: [[100,2], [101,3], [140,4]]}]}};
-    
-  }
-
   test('renders Pod container', () => {
     render(<PodContainer />);
   });
-
-  test('Pod container contains one component', () => {
-    const
-
-
-  })
-
-
 
 });
 
