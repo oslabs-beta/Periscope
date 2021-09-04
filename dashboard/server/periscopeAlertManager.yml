@@ -25,7 +25,5 @@ route:
 receivers:
   - name: 'User'
     email_configs:
-      - to: ''
+      - to: 'periscopeoslab@gmail.com'
 
-templates:
-  - /etc/alertmanager/config/*.tmpl
