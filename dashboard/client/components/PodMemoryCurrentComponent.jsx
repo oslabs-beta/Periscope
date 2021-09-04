@@ -14,12 +14,12 @@ import PodMemoryTooltip from './PodMemoryTooltip';
 import colors from '../assets/colors';
 
 
-const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums }) => {
+const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) => {
   const [result, setResult] = useState([]);
   const [render, setRender] = useState(false);
   let sortedData = []
-  // console.log('pmc: ', podMemoryCurrent)
-  console.log('pin: ', podNums)
+ 
+  
 
   if(podMemoryCurrent.data && Object.keys(podNums).length > 0){
   const data = [];
@@ -40,7 +40,7 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums }) => {
    sortedData = data.sort((a,b)=>(a.number > b.number) ? 1 : -1);
   // console.log('sorted', sortedData)
 
-    if (render === false) {
+    if (render === false) { 
       setResult(sortedData);
       setRender(true);
     }

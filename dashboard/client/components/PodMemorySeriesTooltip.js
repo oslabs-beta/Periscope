@@ -12,15 +12,15 @@ const style = {
   fontSize: '14px',
 }
 
-const TimeSeriesTooltip = props => {
+const PodMemorySeriesTooltip = props => {
   const { active, payload, label } = props;
   if (!active || !payload) return null;
   console.log(payload)
 
-  const nodeEntries = [];
+  const podEntries = [];
   for (let i = 0; i < payload.length; i++) {
-    nodeEntries.push(<p style={{margin: '0px', color: colors[i]}} key={i}>
-    node{i + 1}: {payload[0].payload[`node${i + 1}`]}%
+    podEntries.push(<p style={{margin: '0px', color: colors[i]}} key={i}>
+    {payload[i].name}: {payload[i].value}MB
   </p>);
   }
 
@@ -29,9 +29,9 @@ const TimeSeriesTooltip = props => {
     <p style={{margin: '0px'}}>
       {payload[0].payload.time}
     </p>
-    {nodeEntries}
+    {podEntries}
   </div>
   )
 }
 
-export default TimeSeriesTooltip;
+export default PodMemorySeriesTooltip;
