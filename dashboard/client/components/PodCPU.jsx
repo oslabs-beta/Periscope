@@ -9,7 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import TimeSeriesTooltip from './TimeSeriesTooltip';
+import PodCpuToolTip from './PodCpuToolTip';
 import colors from '../assets/colors';
 
 const PodCPU = ({ clickedArray }) => {
@@ -19,30 +19,32 @@ const PodCPU = ({ clickedArray }) => {
   const lines = [];
   const resultArray = [];
 
+  
   if (clickedLength !== clickedArray.length) {
+    if (clickedArray.length === 0) setClickedLength(0);
     setRender(false);
   }
 
-  console.log('clicked array in podCpu', clickedArray);
-  console.log('set render', render);
+console.log(clickedLength, clickedArray.length)
 
   if (clickedArray.length > 0) {
-    clickedArray[0].cpuValues.forEach((x, i) => {
-      const dataPoint = {};
-      let time = new Date(x[0] * 1000);
-      dataPoint.time = time.toLocaleString();
+      clickedArray[0].cpuValues.forEach((x, i) => {
+        const dataPoint = {};
+        let time = new Date(x[0] * 1000);
+        dataPoint.time = time.toLocaleString();
 
-      for (let j = 0; j < clickedArray.length; j++) {
-        dataPoint[clickedArray[j].name] = +(
-          parseFloat(clickedArray[j].cpuValues[i][1]) * 100
-        ).toFixed(2);
-      }
-      resultArray.push(dataPoint);
-    });
+        for (let j = 0; j < clickedArray.length; j++) {
+          dataPoint[clickedArray[j].name] = +(
+            parseFloat(clickedArray[j].cpuValues[i][1]) * 100
+          ).toFixed(2);
+        }
+        resultArray.push(dataPoint);
+      });
 
     if (render === false) {
       console.log(resultArray);
       setResults(resultArray);
+      setClickedLength(clickedArray.length);
       setRender(true);
     }
 
@@ -84,7 +86,7 @@ const PodCPU = ({ clickedArray }) => {
             return `${tick}%`;
           }}
         />
-        <Tooltip content={TimeSeriesTooltip} />
+        <Tooltip content={PodCpuToolTip} />
         <Legend align='left' wrapperStyle={{ paddingLeft: '30px' }} />
         {lines}
       </LineChart>

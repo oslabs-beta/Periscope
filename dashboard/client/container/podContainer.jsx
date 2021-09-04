@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PodMemoryCurrentComponent from '../components/PodMemoryCurrentComponent.jsx';
 import PodCPU from '../components/PodCPU.jsx';
 import PodInfoRows from '../components/PodInfoRows.jsx';
+import PodMemorySeriesComponent from '../components/PodMemorySeriesComponent.jsx';
 
 const podContainer = () => {
   const [podCpu, setPodCpu] = useState({});
@@ -136,6 +137,7 @@ const podContainer = () => {
   return (<div>
     <PodInfoRows clickedArray={clickedArray} setClickedArray={setClickedArray} podNums={podNums} />
     <PodMemoryCurrentComponent podMemoryCurrent={podMemoryCurrent} podNums={podNums} />
+    <PodMemorySeriesComponent clickedArray={clickedArray} />
     <PodCPU clickedArray={clickedArray} />
   </div>)
 };
