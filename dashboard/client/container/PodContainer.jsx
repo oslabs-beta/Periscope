@@ -4,7 +4,7 @@ import PodCPU from '../components/PodCPU.jsx';
 import PodInfoRows from '../components/PodInfoRows.jsx';
 import PodMemorySeriesComponent from '../components/PodMemorySeriesComponent.jsx';
 
-const podContainer = () => {
+const PodContainer = () => {
   const [podCpu, setPodCpu] = useState({});
   const [podMemorySeries, setPodMemorySeries] = useState({});
   const [podMemoryCurrent, setPodMemoryCurrent] = useState({});
@@ -16,7 +16,7 @@ const podContainer = () => {
   const [clickedArray, setClickedArray] = useState([]);
   const [render, setRender] = useState(false);
 
-  
+
   // time variables
   const sixHours = 21600;
   const endTime = Math.floor(Date.now() / 1000);
@@ -67,7 +67,7 @@ const podContainer = () => {
     }
   }`;
 
-  
+
 
   // fetch to graphql backend, set state with resulting data
   useEffect(() => {
@@ -97,7 +97,7 @@ const podContainer = () => {
     const podInfoNumbers = {}; // empty object to store pod info with names
     let counter = 1; // counter to keep track of non-null pods
     const podList = []; // array of pod list items for rendering
-   
+
     for (let i = 0; i < podInfo.data.result.length; i++) {
       // create nodes 1 through x based on internal Ip addresses
       let pod = podInfo.data.result[i].metric;
@@ -121,13 +121,13 @@ const podContainer = () => {
       if (podInfoNumbers[cpuPod]) podInfoNumbers[cpuPod].cpuValues = podCpu.data.result[i].values;
       let memPod = podMemorySeries.data.result[i].metric.pod;
       if (podInfoNumbers[memPod]) podInfoNumbers[memPod].memorySeriesValues = podMemorySeries.data.result[i].values;
-    } 
+    }
 
-    // onclick function to keep track of selected pods 
-    
-    
+    // onclick function to keep track of selected pods
+
+
     // create and set podlist
-    
+
     setPodNums(podInfoNumbers);
     setPodNames(podList);
     setCalled(true);
@@ -142,4 +142,4 @@ const podContainer = () => {
   </div>)
 };
 
-export default podContainer;
+export default PodContainer;

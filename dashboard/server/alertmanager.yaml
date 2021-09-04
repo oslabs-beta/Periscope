@@ -26,4 +26,3 @@ receivers:
   - name: 'User'
     email_configs:
       - to: 'periscopeoslab@gmail.com'
-

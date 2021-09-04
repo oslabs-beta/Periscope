@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, useLocation, Route} from 'react-router-dom';
 import Logo from '../assets/periscopeLogoTransparent.png';
 
 const LandingContainer = () => {
@@ -9,10 +9,11 @@ const LandingContainer = () => {
   //   });
   // }, []);
 
+
   return (
     <div className='landing'>
       <Link to='/dashboard' className='metrics-button'>
-        <img id='periscopeLogo' src={Logo} />
+        <img id='periscopeLogo' src={Logo}  />
       </Link>
       <Link to='/podDashboard' className='metrics-button'>
         <button>PODS</button>
