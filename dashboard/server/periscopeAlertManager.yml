@@ -9,19 +9,21 @@ global:
   wechat_api_url: https://qyapi.weixin.qq.com/cgi-bin/
   victorops_api_url: https://alert.victorops.com/integrations/generic/20131114/alert/
 route:
-  receiver: "null"
+  receiver: 'null'
   group_by:
-  - job
+    - job
   continue: false
   routes:
-  - receiver: "null"
-    match:
-      alertname: Watchdog
-    continue: false
+    - receiver: 'null'
+      match:
+        alertname: Watchdog
+      continue: false
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 12h
+
 receivers:
-- name: "null"
-templates:
-- /etc/alertmanager/config/*.tmpl
+  - name: 'User'
+    email_configs:
+      - to: 'periscopeoslab@gmail.com'
+
