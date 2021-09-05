@@ -4,6 +4,7 @@ import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 
 const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeWindow }) => {
 
+  // on click function for pod names list to set clickedArray in podContainer
   const newClick = (arg) => {
     let found = false;
     const newClickedArray = clickedArray.slice();
@@ -12,7 +13,6 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
         newClickedArray.splice(i, 1);
         setClickedArray(newClickedArray);
         found = true;
-       
         break;
       }
     }
@@ -22,33 +22,9 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
     }
   };
 
-  // -----------------------------------------------------------------------------------------
-  // for changing time and step range - 
-  // to disable functionality: 
-  // comment out this section and div w/ id of 'dropdowns' in podInfoRows render
-  // comment out imeWindow and step state added to podcontainer 
-  const oneHour = 3600;
-  const sixHours = 21600;
-  const twelveHours = 43200;
-  const oneDay = 86400;
-  const threeDays = 259200;
-
-  const times = [oneHour, sixHours, twelveHours, oneDay, threeDays];
-  const timeButtons = [];
-  times.forEach(time => {
-    timeButtons.push(<DropdownItem menuVariant="dark"> <div onClick={() => { console.log('clicked'); setTimeWindow(time); setClickedArray([]) }} style={{ padding: '5px'}}>{time}</div></DropdownItem>);
-  })
-
-  const steps = ['1m', '5m', '30m', '1hr'];
-  const stepButtons = [];
-  steps.forEach(step => {
-    stepButtons.push(<DropdownItem menuVariant="dark"> <div onClick={() => { console.log('clicked'); setStep(step); setClickedArray([]) }} style={{ padding: '5px'}}>{step}</div></DropdownItem>);
-  })
-  // ------------------------------------------------------------------------------------------
-
+  // create list of pod names 
   const podNames = Object.entries(podNums);
   const podList = [];
-
   for (let i = 0; i < podNames.length; i++) {
     let pod = podNames[i][1];
     podList.push(
@@ -61,6 +37,33 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
       </li>
     );
   }
+
+   /* -----------------------------------------------------------------------------------------
+  functionality to change time and step range - 
+  to disable functionality: 
+  comment out this section and div w/ id of 'dropdowns' in podInfoRows render
+  comment out imeWindow and step state added to podcontainer */
+
+  //time range variables
+  const oneHour = 3600;
+  const sixHours = 21600;
+  const twelveHours = 43200;
+  const oneDay = 86400;
+  const threeDays = 259200;
+
+  const times = [oneHour, sixHours, twelveHours, oneDay, threeDays];
+  const timeButtons = [];
+  times.forEach(time => { //create dropwdown items to select time range
+    timeButtons.push(<DropdownItem menuVariant="dark"> <div onClick={() => { console.log('clicked'); setTimeWindow(time); setClickedArray([]) }} style={{ padding: '5px'}}>{time}</div></DropdownItem>);
+  })
+
+  const steps = ['1m', '5m', '30m', '1hr']; // step range variables in array
+  const stepButtons = [];
+  steps.forEach(step => { // create dropdown items to select step range
+    stepButtons.push(<DropdownItem menuVariant="dark"> <div onClick={() => { console.log('clicked'); setStep(step); setClickedArray([]) }} style={{ padding: '5px'}}>{step}</div></DropdownItem>);
+  })
+  // ------------------------------------------------------------------------------------------
+
 
   return (
     <div>
@@ -80,9 +83,3 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
 
 export default PodInfoRows;
 
-//container
-
-//podinforows
-//click fuction to add pods to clickedArray.
-//memorytimeseries
-//clickedArray
