@@ -1,9 +1,9 @@
 import React, { Component, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import MainContainer from './container/mainContainer.jsx';
 import LandingContainer from './container/landingContainer.jsx';
 import NodeContainer from './container/NodeContainer.jsx';
 import PodContainer from './container/PodContainer.jsx';
+import Header from './components/Header.jsx';
 
 const App = () => {
   // useEffect with prometheus port forwarding
@@ -15,8 +15,9 @@ const App = () => {
 
   return (
     <Router>
+      <Header />
       <Route exact path="/" component={LandingContainer} />
-      <Route path="/dashboard" component={NodeContainer} />
+      <Route path="/nodeDashboard" component={NodeContainer} />
       <Route path="/podDashboard" component={PodContainer} />
     </Router>
   );

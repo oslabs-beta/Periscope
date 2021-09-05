@@ -29,6 +29,7 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
     let pod = podNames[i][1];
     podList.push(
       <li
+        style={{ "list-style-type": "none" }}
         onClick={() => {
           newClick(pod.podName);
         }}
@@ -42,7 +43,7 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
   functionality to change time and step range - 
   to disable functionality: 
   comment out this section and div w/ id of 'dropdowns' in podInfoRows render
-  comment out imeWindow and step state added to podcontainer */
+  comment out TimeWindow and Step state added to podcontainer */
 
   //time range variables
   const oneHour = 3600;
@@ -53,14 +54,14 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
 
   const times = [oneHour, sixHours, twelveHours, oneDay, threeDays];
   const timeButtons = [];
-  times.forEach(time => { //create dropwdown items to select time range
-    timeButtons.push(<DropdownItem menuVariant="dark"> <div onClick={() => { console.log('clicked'); setTimeWindow(time); setClickedArray([]) }} style={{ padding: '5px'}}>{time}</div></DropdownItem>);
+  times.forEach((time, i) => { //create dropwdown items to select time range
+    timeButtons.push(<DropdownItem menuVariant="dark" key={i}> <div onClick={() => { console.log('clicked'); setTimeWindow(time); setClickedArray([]) }} style={{ padding: '5px'}}>{time}</div></DropdownItem>);
   })
 
   const steps = ['1m', '5m', '30m', '1hr']; // step range variables in array
   const stepButtons = [];
-  steps.forEach(step => { // create dropdown items to select step range
-    stepButtons.push(<DropdownItem menuVariant="dark"> <div onClick={() => { console.log('clicked'); setStep(step); setClickedArray([]) }} style={{ padding: '5px'}}>{step}</div></DropdownItem>);
+  steps.forEach((step, i) => { // create dropdown items to select step range
+    stepButtons.push(<DropdownItem menuVariant="dark" key={i}> <div onClick={() => { console.log('clicked'); setStep(step); setClickedArray([]) }} style={{ padding: '5px'}}>{step}</div></DropdownItem>);
   })
   // ------------------------------------------------------------------------------------------
 
