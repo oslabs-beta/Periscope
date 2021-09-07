@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import PodInfoTableSetup from './PodInfoTableSetup.jsx'
 
 const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeWindow }) => {
   const [isTimeOpen, setIsTimeOpen] = useState(false);
@@ -22,23 +23,24 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
     }
   };
 
-  // create list of pod names 
-  const podNames = Object.entries(podNums);
-  const podList = [];
-  for (let i = 0; i < podNames.length; i++) {
-    let pod = podNames[i][1];
-    podList.push(
-      <li
-        onClick={() => {
-          newClick(pod.podName);
-        }}
-        key={i}>
-        {pod.name} {pod.podName}
-      </li>
-    );
-  }
+  // create list of pod names
+  // const podNames = Object.entries(podNums);
+  // const podList = [];
+  // for (let i = 0; i < podNames.length; i++) {
+  //   let pod = podNames[i][1];
+  //   podList.push(
+  //     <li
+  //       style={{ "list-style-type": "none" }}
+  //       onClick={() => {
+  //         newClick(pod.podName);
+  //       }}
+  //       key={i}>
+  //       {pod.name} {pod.podName}
+  //     </li>
+  //   );
+  // }
 
-   /* -----------------------------------------------------------------------------------------
+  /* -----------------------------------------------------------------------------------------
   functionality to change time and step range - 
   to disable functionality: 
   comment out this section and div w/ id of 'dropdowns' in podInfoRows render
@@ -75,7 +77,6 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
   }
   // ------------------------------------------------------------------------------------------
 
-
   return (
     <div >
       <div className='dropdowns'>
@@ -90,11 +91,11 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
             (<div className="dropdown-menu" id="stepMenu">{stepButtons}</div>)}
         </div>
       </div>
-      {' '}
-      <ul>{podList}</ul>{' '}
+      {/* {' '}
+      <ul>{podList}</ul>{' '} */}
+      <PodInfoTableSetup podNums={podNums} newClick={newClick} />
     </div>
   );
 };
 
 export default PodInfoRows;
-
