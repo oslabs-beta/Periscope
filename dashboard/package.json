@@ -36,6 +36,7 @@
     "graphql": "^15.5.2",
     "graphql-tag": "^2.12.5",
     "jest-fetch-mock": "^3.0.3",
+    "mdbreact": "^5.1.0",
     "node-fetch": "^2.6.1",
     "pg-promise": "^10.11.0",
     "prop-types": "^15.7.2",
