@@ -42,7 +42,6 @@ console.log(clickedLength, clickedArray.length)
       });
 
     if (render === false) {
-      console.log(resultArray);
       setResults(resultArray);
       setClickedLength(clickedArray.length);
       setRender(true);

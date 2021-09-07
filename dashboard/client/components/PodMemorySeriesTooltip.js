@@ -15,7 +15,6 @@ const style = {
 const PodMemorySeriesTooltip = props => {
   const { active, payload, label } = props;
   if (!active || !payload) return null;
-  console.log(payload)
 
   const podEntries = [];
   for (let i = 0; i < payload.length; i++) {
