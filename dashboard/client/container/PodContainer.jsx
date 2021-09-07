@@ -117,17 +117,26 @@ const PodContainer = () => {
     }
     
     setPodNums(podInfoNumbers);
-    // setPodNames(podList);
     setCalled(true);
   }
 
 
-  return (<div>
-    <PodInfoRows clickedArray={clickedArray} setClickedArray={setClickedArray} podNums={podNums} setTimeWindow={setTimeWindow} setStep={setStep} />
-    <PodMemoryCurrentComponent podMemoryCurrent={podMemoryCurrent} podNums={podNums} />
-    <PodMemorySeriesComponent clickedArray={clickedArray} />
-    <PodCPU clickedArray={clickedArray} />
-  </div>)
+  return (
+    <div className='pod-container'>
+      <div className="components" id="podInfo">
+        <PodInfoRows  clickedArray={clickedArray} setClickedArray={setClickedArray} podNums={podNums} setTimeWindow={setTimeWindow} setStep={setStep} />
+      </div>
+      <div className="components pod-time-series" id="podMemory">
+        <PodMemorySeriesComponent  clickedArray={clickedArray} />
+      </div>
+      <div className="components" id="podMemoryBars">
+        <PodMemoryCurrentComponent podMemoryCurrent={podMemoryCurrent} podNums={podNums} />
+      </div>
+      <div className="components pod-time-series" id="podCpu">
+        <PodCPU clickedArray={clickedArray} />
+      </div>
+    </div>
+  )
 };
 
 export default PodContainer;

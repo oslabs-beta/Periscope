@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../assets/periscopeLogoTransparent.png';
+import Logo from '../assets/periscopeTextLogoTransparent.png';
 
 const LandingContainer = () => {
 
