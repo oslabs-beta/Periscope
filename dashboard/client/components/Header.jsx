@@ -9,7 +9,6 @@ const Header = () => {
       <div>
         <Link className='header-button' to='/nodeDashboard'><button>Node Dashboard</button></Link>
         <Link className='header-button' to='/podDashboard'><button>Pod Dashboard</button></Link>
-        <button>Logs</button>
       </div>
     </div>
   )
