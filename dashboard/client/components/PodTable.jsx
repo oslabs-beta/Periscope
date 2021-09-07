@@ -33,11 +33,6 @@ export default function PodTable({ columns, data, newClick }) {
                 {row.cells.map((cell, i) => {
                   return (
                     <td
-                      style={{
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                      }}
                       onClick={() => {
                         newClick(row.original.podName);
                       }}
