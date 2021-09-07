@@ -41,7 +41,6 @@
     "pg-promise": "^10.11.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",

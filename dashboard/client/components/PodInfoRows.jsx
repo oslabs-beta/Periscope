@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import DropdownButton from 'react-bootstrap/esm/DropdownButton';
-import DropdownItem from 'react-bootstrap/esm/DropdownItem';
-import PodInfoTableSetup from './PodInfoTableSetup.jsx';
+import React, { useState} from 'react';
+import PodInfoTableSetup from './PodInfoTableSetup.jsx'
 
-const PodInfoRows = ({
-  clickedArray,
-  setClickedArray,
-  podNums,
-  setStep,
-  setTimeWindow,
-}) => {
+const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeWindow }) => {
+  const [isTimeOpen, setIsTimeOpen] = useState(false);
+  const [isStepOpen, setIsStepOpen] = useState(false);
+
   // on click function for pod names list to set clickedArray in podContainer
   const newClick = (arg) => {
     let found = false;
@@ -59,55 +54,42 @@ const PodInfoRows = ({
   const threeDays = 259200;
 
   const times = [oneHour, sixHours, twelveHours, oneDay, threeDays];
+  const timeStrs = ['1hr', '6hrs', '12hrs', '1day', '3days']
   const timeButtons = [];
-  times.forEach((time, i) => {
-    //create dropwdown items to select time range
-    timeButtons.push(
-      <DropdownItem menuVariant='dark' key={i}>
-        {' '}
-        <div
-          onClick={() => {
-            console.log('clicked');
-            setTimeWindow(time);
-            setClickedArray([]);
-          }}
-          style={{ padding: '5px' }}>
-          {time}
-        </div>
-      </DropdownItem>
-    );
-  });
+  times.forEach((time, i) => { //create dropwdown items to select time range
+    timeButtons.push(<div className="dropdown-div" key={`${i}`} onClick={() => { console.log('clicked'); setTimeWindow(time); setClickedArray([]); setIsTimeOpen(false) }} >{timeStrs[i]}</div>);
+  })
 
   const steps = ['1m', '5m', '30m', '1hr']; // step range variables in array
   const stepButtons = [];
-  steps.forEach((step, i) => {
-    // create dropdown items to select step range
-    stepButtons.push(
-      <DropdownItem menuVariant='dark' key={i}>
-        {' '}
-        <div
-          onClick={() => {
-            console.log('clicked');
-            setStep(step);
-            setClickedArray([]);
-          }}
-          style={{ padding: '5px' }}>
-          {step}
-        </div>
-      </DropdownItem>
-    );
-  });
+  steps.forEach((step, i) => { // create dropdown items to select step range
+    stepButtons.push(<div className="dropdown-div" key={`${i}`} onClick={() => { console.log('clicked'); setStep(step); setClickedArray([]); setIsStepOpen(false) }} >{step}</div>);
+  })
+
+  const toggleStep = () => {
+    if (isTimeOpen) setIsTimeOpen(false);
+    isStepOpen ? setIsStepOpen(false) : setIsStepOpen(true);
+  }
+
+  const toggleTime = () => {
+    if (isStepOpen) setIsStepOpen(false);
+    isTimeOpen ? setIsTimeOpen(false) : setIsTimeOpen(true)
+  }
   // ------------------------------------------------------------------------------------------
 
   return (
-    <div>
-      <div id='dropdowns'>
-        <DropdownButton class='dropdown-button' title='Time Range'>
-          {timeButtons}
-        </DropdownButton>
-        <DropdownButton class='dropdown-button' title='Step'>
-          {stepButtons}
-        </DropdownButton>
+    <div >
+      <div className='dropdowns'>
+        <div className='dropdown-time'>
+          <button className="dropdown-button" onClick={() => toggleTime()}>Time Range</button>
+          {isTimeOpen &&
+            (<div className="dropdown-menu" id="timeMenu">{timeButtons}</div>)}
+        </div>
+        <div className='dropdown-step'>  
+          <button className="dropdown-button" onClick={() => toggleStep()}>Step</button>
+          {isStepOpen &&
+            (<div className="dropdown-menu" id="stepMenu">{stepButtons}</div>)}
+        </div>
       </div>
       {/* {' '}
       <ul>{podList}</ul>{' '} */}

@@ -123,7 +123,7 @@ const PodContainer = () => {
 
 
   return (<div>
-    <PodInfoRows clickedArray={clickedArray} setClickedArray={setClickedArray} podNums={podNums} setTimeWindow={setTimeWindow} setStep={setStep}/>
+    <PodInfoRows clickedArray={clickedArray} setClickedArray={setClickedArray} podNums={podNums} setTimeWindow={setTimeWindow} setStep={setStep} />
     <PodMemoryCurrentComponent podMemoryCurrent={podMemoryCurrent} podNums={podNums} />
     <PodMemorySeriesComponent clickedArray={clickedArray} />
     <PodCPU clickedArray={clickedArray} />

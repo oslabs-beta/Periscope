@@ -63,7 +63,7 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) 
           barSize={7}>
           <CartesianGrid stroke='grey' />
           {render && <XAxis dataKey='name' tick={{ fontSize: 10 }} ticks={[20, 40, 60, 80, 100]}/>}
-          <YAxis  />
+          <YAxis tick={{ fontSize: 14 }} />
           <Tooltip cursor={{ fill: 'transparent' }} content={PodMemoryTooltip}/>
           <Bar dataKey='value' fill="#8884d8"  />
         </BarChart>
