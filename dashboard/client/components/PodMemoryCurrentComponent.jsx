@@ -51,7 +51,7 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) 
       <h2>Pod Memory Usage</h2>
       <div id='barChart'>
         <BarChart
-          width={800}
+          width={750}
           height={275}
           data={result}
           margin={{
