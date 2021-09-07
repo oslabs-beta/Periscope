@@ -82,8 +82,9 @@ const PodMemorySeriesComponent = ({ clickedArray }) => {
           ticks={[20, 40, 60, 80, 100]}
         />
         <YAxis
+          tick={{ fontSize: 14 }}
           tickFormatter={(tick) => {
-            return `${tick} MB`;
+            return `${tick}MB`;
           }}
         />
         <Tooltip content={PodMemorySeriesTooltip} />

@@ -12,10 +12,12 @@ import {
 import PodCpuToolTip from './PodCpuToolTip';
 import colors from '../assets/colors';
 
-const PodCPU = ({ clickedArray }) => {
+const PodCPU = ({ clickedArray, timeWindow, step }) => {
   const [results, setResults] = useState([]);
   const [render, setRender] = useState(false);
   const [clickedLength, setClickedLength] = useState(0);
+  const [timeWindowChange, setTimeWindowChange] = useState(timeWindow);
+  const [stepChange, setStepChange] = useState(step);
   const lines = [];
   const resultArray = [];
 
@@ -24,8 +26,6 @@ const PodCPU = ({ clickedArray }) => {
     if (clickedArray.length === 0) setClickedLength(0);
     setRender(false);
   }
-
-console.log(clickedLength, clickedArray.length)
 
   if (clickedArray.length > 0) {
       clickedArray[0].cpuValues.forEach((x, i) => {
@@ -81,6 +81,7 @@ console.log(clickedLength, clickedArray.length)
           ticks={[20, 40, 60, 80, 100]}
         />
         <YAxis
+          tick={{ fontSize: 14 }}
           tickFormatter={(tick) => {
             return `${tick}%`;
           }}

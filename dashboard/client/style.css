@@ -29,6 +29,7 @@ button {
   align-items: center;
   height: 30px;
   border-bottom: .5px solid #121212;
+  margin-bottom: 10px;
 }
 
 .header-logo {
@@ -44,11 +45,58 @@ button {
 }
 
 .components {
-  border-color: 1f1b24;
+  border-color: #1f1b24;
   margin: 3px;
   border-radius: 10px;
   background-color: #1f1b24;
   text-align: center;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropdowns button {
+  background-color: #ff8505;
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.dropdown-menu {
+  /* border-radius: 0px 0px 5px 5px; */
+  background-color: gray;
+  opacity: 0.9;
+  position: absolute;
+  z-index: 2;
+  margin: 0px 5px 5px;
+}
+
+.dropdown-item {
+  font-weight: bold; 
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-div {
+  padding: 5px;
+  color: black;
+  font-weight: bold;
+}
+
+.dropdown-div:hover {
+  background-color: whitesmoke;
+}
+.dropdown-div:active {
+  color: #ff8505;
+}
+
+#timeMenu {
+  width: 95.33px;
+}
+
+#stepMenu {
+  width: 48.89px;
 }
 
 .chart-container {
