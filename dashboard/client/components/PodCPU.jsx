@@ -65,7 +65,7 @@ const PodCPU = ({ clickedArray, timeWindow, step }) => {
       <h2>CPU Usage</h2>
 
       <LineChart
-        width={750}
+        width={500}
         height={275}
         data={results}
         margin={{

@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import PodInfoTableSetup from './PodInfoTableSetup.jsx'
 
+
 const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeWindow }) => {
   const [isTimeOpen, setIsTimeOpen] = useState(false);
   const [isStepOpen, setIsStepOpen] = useState(false);
@@ -78,7 +79,7 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
   // ------------------------------------------------------------------------------------------
 
   return (
-    <div >
+    <div className='pod-info-rows'>
       <div className='dropdowns'>
         <div className='dropdown-time'>
           <button className="dropdown-button" onClick={() => toggleTime()}>Time Range</button>

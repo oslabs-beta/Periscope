@@ -4,10 +4,8 @@ import { useTable } from 'react-table';
 import {MDBTable} from 'mdbreact'
 
 const PodInfoTableSetup = ({ podNums, newClick }) => {
-  console.log(podNums);
   // if(podNums)
   if (podNums) {
-    console.log(podNums);
     const podNames = Object.keys(podNums);
     // component for each node
     const pods = [];
@@ -24,7 +22,7 @@ const PodInfoTableSetup = ({ podNums, newClick }) => {
 
     const columns = [
       {
-        Header: 'Pod Number',
+        Header: 'Pod#',
         accessor: 'podNumber',
       },
       {
@@ -63,13 +61,11 @@ const PodInfoTableSetup = ({ podNums, newClick }) => {
     //   // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     //   //   useTable({ columns, data });
     return (
-      <div>
         <div className='table'>
-          <MDBTable scrollY>
+          <MDBTable scrollY >
           <PodTable columns={columns} data={pods} newClick={newClick} />
           </MDBTable>
         </div>
-      </div>
     );
   }
 };
