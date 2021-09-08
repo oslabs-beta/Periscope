@@ -9,7 +9,7 @@ const App = () => {
   // useEffect with prometheus port forwarding
     useEffect(() => {
     fetch('/prometheus').then((data) => {
-      console.log('connected to prometheus', data);
+      console.log('connected to prometheus');
     });
   }, []);
 
