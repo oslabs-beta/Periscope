@@ -2,7 +2,7 @@ import React from 'react';
 import { useTable } from 'react-table';
 import lineColors from '../assets/colors';
 
-export default function PodTable({ columns, data, newClick }) {
+export default function PodTable({ columns, data, newClick, clickedArray }) {
   const {
     getTableProps, // table props from react-table
     getTableBodyProps, // table body props from react-table
@@ -14,17 +14,15 @@ export default function PodTable({ columns, data, newClick }) {
     data,
   });
 
-  function changeColor(id) { 
+  function changeColor(id) {
     const row = document.getElementById(id);
     if (row.style.color === 'orange') {
       row.style.color = 'gray';
-    }
-    else row.style.color = 'orange';
+    } else row.style.color = 'orange';
   }
 
-
   return (
-    <div className="pod-table">
+    <div className='pod-table'>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -39,10 +37,15 @@ export default function PodTable({ columns, data, newClick }) {
           {rows.map((row, index) => {
             prepareRow(row);
             return (
-              <tr className='table-row' id={index} {...row.getRowProps()} onClick={() => changeColor(index)}>
+              <tr
+                className='table-row'
+                id={index}
+                {...row.getRowProps()}
+                onClick={() => changeColor(index)}>
                 {row.cells.map((cell, i) => {
                   return (
-                    <td className={`column${i}`}
+                    <td
+                      className={`column${i}`}
                       onClick={() => {
                         newClick(row.original.podName);
                       }}

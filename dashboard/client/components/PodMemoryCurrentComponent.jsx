@@ -65,7 +65,7 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) 
           {render && <XAxis dataKey='name' tick={{ fontSize: 10 }} ticks={[20, 40, 60, 80, 100]}/>}
           <YAxis tick={{ fontSize: 14 }} />
           <Tooltip cursor={{ fill: 'transparent' }} content={PodMemoryTooltip}/>
-          <Bar dataKey='value' fill="#8884d8"  />
+          <Bar dataKey='value' fill="#ff8505"  />
         </BarChart>
       </div>
     </div>

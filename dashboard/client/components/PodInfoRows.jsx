@@ -1,8 +1,13 @@
-import React, { useState} from 'react';
-import PodInfoTableSetup from './PodInfoTableSetup.jsx'
+import React, { useState } from 'react';
+import PodInfoTableSetup from './PodInfoTableSetup.jsx';
 
-
-const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeWindow }) => {
+const PodInfoRows = ({
+  clickedArray,
+  setClickedArray,
+  podNums,
+  setStep,
+  setTimeWindow,
+}) => {
   const [isTimeOpen, setIsTimeOpen] = useState(false);
   const [isStepOpen, setIsStepOpen] = useState(false);
 
@@ -47,6 +52,13 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
   comment out this section and div w/ id of 'dropdowns' in podInfoRows render
   comment out TimeWindow and Step state added to podcontainer */
 
+  function changeColorsBack() {
+    const rows = document.querySelectorAll('.table-row');
+    for (const row of rows) {
+      if (row.style.color === 'orange') row.style.color = 'gray';
+    }
+  }
+
   //time range variables
   const oneHour = 3600;
   const sixHours = 21600;
@@ -55,46 +67,101 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
   const threeDays = 259200;
 
   const times = [oneHour, sixHours, twelveHours, oneDay, threeDays];
-  const timeStrs = ['1hr', '6hrs', '12hrs', '1day', '3days']
+  const timeStrs = ['1hr', '6hrs', '12hrs', '1day', '3days'];
   const timeButtons = [];
-  times.forEach((time, i) => { //create dropwdown items to select time range
-    timeButtons.push(<div className="dropdown-div" key={`${i}`} onClick={() => { console.log('clicked'); setTimeWindow(time); setClickedArray([]); setIsTimeOpen(false) }} >{timeStrs[i]}</div>);
-  })
+  times.forEach((time, i) => {
+    //create dropwdown items to select time range
+    timeButtons.push(
+      <div
+        className='dropdown-div'
+        key={`${i}`}
+        onClick={() => {
+          console.log('clicked');
+          setTimeWindow(time);
+          setClickedArray([]);
+          setIsTimeOpen(false);
+          changeColorsBack();
+        }}>
+        {timeStrs[i]}
+      </div>
+    );
+  });
 
   const steps = ['5m', '15m', '30m', '1h']; // step range variables in array
   const stepButtons = [];
-  steps.forEach((step, i) => { // create dropdown items to select step range
-    stepButtons.push(<div className="dropdown-div" key={`${i}`} onClick={() => { console.log('clicked'); setStep(step); setClickedArray([]); setIsStepOpen(false) }} >{step}</div>);
-  })
+  steps.forEach((step, i) => {
+    // create dropdown items to select step range
+    stepButtons.push(
+      <div
+        className='dropdown-div'
+        key={`${i}`}
+        onClick={() => {
+          console.log('clicked');
+          setStep(step);
+          setClickedArray([]);
+          setIsStepOpen(false);
+          changeColorsBack();
+        }}>
+        {step}
+      </div>
+    );
+  });
 
   const toggleStep = () => {
     if (isTimeOpen) setIsTimeOpen(false);
     isStepOpen ? setIsStepOpen(false) : setIsStepOpen(true);
-  }
+  };
 
   const toggleTime = () => {
     if (isStepOpen) setIsStepOpen(false);
-    isTimeOpen ? setIsTimeOpen(false) : setIsTimeOpen(true)
-  }
+    isTimeOpen ? setIsTimeOpen(false) : setIsTimeOpen(true);
+  };
+
   // ------------------------------------------------------------------------------------------
 
   return (
     <div className='pod-info-rows'>
       <div className='dropdowns'>
         <div className='dropdown-time'>
-          <button className="dropdown-button" onClick={() => toggleTime()}>Time Range</button>
-          {isTimeOpen &&
-            (<div className="dropdown-menu" id="timeMenu">{timeButtons}</div>)}
+          <button className='dropdown-button' onClick={() => toggleTime()}>
+            Time Range
+          </button>
+          {isTimeOpen && (
+            <div className='dropdown-menu' id='timeMenu'>
+              {timeButtons}
+            </div>
+          )}
         </div>
-        <div className='dropdown-step'>  
-          <button className="dropdown-button" onClick={() => toggleStep()}>Step</button>
-          {isStepOpen &&
-            (<div className="dropdown-menu" id="stepMenu">{stepButtons}</div>)}
+        <div className='dropdown-step'>
+          <button className='dropdown-button' onClick={() => toggleStep()}>
+            Step
+          </button>
+          {isStepOpen && (
+            <div className='dropdown-menu' id='stepMenu'>
+              {stepButtons}
+            </div>
+          )}
+        </div>
+        <div className='unselect-all'>
+          <button
+            className='dropdown-button'
+            onClick={() => {
+              setClickedArray([]);
+              changeColorsBack();
+            }}>
+            Unselect All
+          </button>
         </div>
       </div>
       {/* {' '}
       <ul>{podList}</ul>{' '} */}
-      <PodInfoTableSetup podNums={podNums} newClick={newClick} />
+      <div>
+        <PodInfoTableSetup
+          podNums={podNums}
+          newClick={newClick}
+          clickedArray={clickedArray}
+        />
+      </div>
     </div>
   );
 };
