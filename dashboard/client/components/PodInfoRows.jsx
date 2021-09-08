@@ -61,7 +61,7 @@ const PodInfoRows = ({ clickedArray, setClickedArray, podNums, setStep, setTimeW
     timeButtons.push(<div className="dropdown-div" key={`${i}`} onClick={() => { console.log('clicked'); setTimeWindow(time); setClickedArray([]); setIsTimeOpen(false) }} >{timeStrs[i]}</div>);
   })
 
-  const steps = ['1m', '5m', '30m', '1h']; // step range variables in array
+  const steps = ['5m', '15m', '30m', '1h']; // step range variables in array
   const stepButtons = [];
   steps.forEach((step, i) => { // create dropdown items to select step range
     stepButtons.push(<div className="dropdown-div" key={`${i}`} onClick={() => { console.log('clicked'); setStep(step); setClickedArray([]); setIsStepOpen(false) }} >{step}</div>);
