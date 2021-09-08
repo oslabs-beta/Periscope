@@ -13,8 +13,18 @@ export default function PodTable({ columns, data, newClick }) {
     columns,
     data,
   });
+
+  function changeColor(id) { 
+    const row = document.getElementById(id);
+    if (row.style.color === 'orange') {
+      row.style.color = 'gray';
+    }
+    else row.style.color = 'orange';
+  }
+
+
   return (
-    <div>
+    <div className="pod-table">
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -29,10 +39,10 @@ export default function PodTable({ columns, data, newClick }) {
           {rows.map((row, index) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr className='table-row' id={index} {...row.getRowProps()} onClick={() => changeColor(index)}>
                 {row.cells.map((cell, i) => {
                   return (
-                    <td
+                    <td className={`column${i}`}
                       onClick={() => {
                         newClick(row.original.podName);
                       }}

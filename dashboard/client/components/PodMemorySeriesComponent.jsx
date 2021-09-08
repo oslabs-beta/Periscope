@@ -66,7 +66,7 @@ const PodMemorySeriesComponent = ({ clickedArray }) => {
       <h2>Memory Usage</h2>
 
       <LineChart
-        width={750}
+        width={500}
         height={275}
         data={results}
         margin={{
