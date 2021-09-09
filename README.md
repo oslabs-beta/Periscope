@@ -1,7 +1,7 @@
 # Periscope
 
 <p align="center">
-  <a href="" rel="noopener">
+  <a href="getperiscopedashboard.com" rel="noopener">
  <img src="https://github.com/oslabs-beta/Periscope/raw/dev/dashboard/client/assets/periscopeLogo.png" alt="Periscope logo"></a>
 </p>
 
@@ -17,7 +17,7 @@
 
 <p align="center"> Periscope is the dashboard solution for monitoring and tracking your Kubernetes pods & nodes.
     <br> 
-  <a href="https://www.periscopedashboard.io/"><strong>Visit us at periscopedashboard.io </strong></a>
+  <a href="getperiscopedashboard.com/"><strong>Visit us at getperiscopedashboard.com </strong></a>
 </p>
 
 ## 📝 Table of Contents
