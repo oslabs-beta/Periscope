@@ -45,6 +45,8 @@ Engineers can see CPU, disk usage and memory usage across their cluster. </p>
 - [React](https://reactjs.org)
 - [NodeJS|Express](https://expressjs.com/)
 - [Apollo GraphQL](https://www.apollographql.com/)
+- [React Router](https://reactrouter.com/)
+- [Locust](https://locust.io/)
 - [Recharts](https://recharts.org/en-US/)
 - [React Table](https://react-table.tanstack.com/)
 - [Webpack](https://webpack.js.org/)
