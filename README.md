@@ -17,8 +17,11 @@
 
 <p align="center"> Periscope is the dashboard solution for monitoring and tracking your Kubernetes pods & nodes.
     <br> 
-  <strong>[Visit us at getperiscopedashboard.com](http://getperiscopedashboard.com) </strong>
+    <br>
+  <a href="http://getperiscopedashboard.com/"><strong>Visit us at getperiscopedashboard.com</strong></a>
 </p>
+
+
 
 ## 📝 Table of Contents
 - [About](#about)
@@ -53,7 +56,11 @@ Engineers can see CPU, disk usage and memory usage across their cluster. </p>
 
 ## 🎥 Demo <a name = "demo"></a>
 
-<b> PUT IN GIF OF DASHBOARDD!! </b>
+<img width=600 height=360 src= "https://i.imgur.com/oN7BDIf.gif">
+<br>
+<img width=600 height=360 src= "https://i.imgur.com/mu9qrZM.gif">
+<br>
+<img width=600 height=360 src= "https://i.imgur.com/rayJYet.gif">
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
