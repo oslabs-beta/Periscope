@@ -17,7 +17,7 @@
 
 <p align="center"> Periscope is the dashboard solution for monitoring and tracking your Kubernetes pods & nodes.
     <br> 
-  <a><strong>[Visit us at getperiscopedashboard.com](https://getperiscopedashboard.com) </strong></a>
+  <strong>[Visit us at getperiscopedashboard.com](http://getperiscopedashboard.com) </strong>
 </p>
 
 ## 📝 Table of Contents
