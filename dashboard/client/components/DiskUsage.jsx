@@ -71,12 +71,14 @@ const DiskUsage = (props) => {
         data[k][`node${position + 1}`] = (((totalDisk - freeDiskSpace) / totalDisk)*100).toFixed(2);
       }
     }
-
+      //prevents recharts.js from creating infinite loop with re-renders.
     if (render === false) {
       setDiskUsage(data);
       setRender(true);
     }
 
+      //adds a line in the graph for each node with total disk usage over time.
+    
     for (let i = 0; i < total.length; i++) {
       lines.push(
         <Line
