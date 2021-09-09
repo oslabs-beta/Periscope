@@ -1,3 +1,10 @@
+/*
+ * *****************************************************************************
+ * @description ????????
+ * *****************************************************************************
+ */
+
+
 import React, { useState, useEffect } from 'react';
 import {
   BarChart,
@@ -18,8 +25,8 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) 
   const [result, setResult] = useState([]);
   const [render, setRender] = useState(false);
   let sortedData = []
- 
-  
+
+
 
   if(podMemoryCurrent.data && Object.keys(podNums).length > 0){
   const data = [];
@@ -40,7 +47,7 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) 
    sortedData = data.sort((a,b)=>(a.number > b.number) ? 1 : -1);
   // console.log('sorted', sortedData)
 
-    if (render === false) { 
+    if (render === false) {
       setResult(sortedData);
       setRender(true);
     }

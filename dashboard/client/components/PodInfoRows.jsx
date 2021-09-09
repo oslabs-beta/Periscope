@@ -1,3 +1,10 @@
+/*
+ * *****************************************************************************
+ * @description ????????
+ * *****************************************************************************
+ */
+
+
 import React, { useState } from 'react';
 import PodInfoTableSetup from './PodInfoTableSetup.jsx';
 
@@ -29,29 +36,7 @@ const PodInfoRows = ({
     }
   };
 
-  // create list of pod names
-  // const podNames = Object.entries(podNums);
-  // const podList = [];
-  // for (let i = 0; i < podNames.length; i++) {
-  //   let pod = podNames[i][1];
-  //   podList.push(
-  //     <li
-  //       style={{ "list-style-type": "none" }}
-  //       onClick={() => {
-  //         newClick(pod.podName);
-  //       }}
-  //       key={i}>
-  //       {pod.name} {pod.podName}
-  //     </li>
-  //   );
-  // }
-
-  /* -----------------------------------------------------------------------------------------
-  functionality to change time and step range - 
-  to disable functionality: 
-  comment out this section and div w/ id of 'dropdowns' in podInfoRows render
-  comment out TimeWindow and Step state added to podcontainer */
-
+  // changes all color back to gray once the time-range or time-step is changed
   function changeColorsBack() {
     const rows = document.querySelectorAll('.table-row');
     for (const row of rows) {
@@ -153,8 +138,6 @@ const PodInfoRows = ({
           </button>
         </div>
       </div>
-      {/* {' '}
-      <ul>{podList}</ul>{' '} */}
       <div>
         <PodInfoTableSetup
           podNums={podNums}
