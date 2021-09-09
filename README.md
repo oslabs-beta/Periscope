@@ -21,7 +21,10 @@
 
 ## 📝 Table of Contents
 - [About](#about)
+   - [Built Using](#built_using)
+- [Demo] (#demo)
 - [Getting Started](#getting_started)
+   - [Prerequisites](#prerequisites)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
@@ -33,24 +36,32 @@ Engineers can see CPU, disk usage and memory usage across their cluster. </p>
 
 <p> The dashboard makes it easy to see troubling trends thereby providing developers with the information needed to make changes. </p>
 
+## 🎥 Demo <a name = "demo"></a>
+
+<b> PUT IN GIF OF DASHBOARDD!! </b>
+
+
 ### ⛏️ Built Using <a name = "built_using"></a>
-- [Kubernetes] (https://www.kubernetes.dev/)
-- [Prometheus] (https://prometheus.io/)
-- [React] (https://reactjs.org)
-- [NodeJS/Express](https://expressjs.com/)
-- [Apollo GraphQL] (https://www.apollographql.com/)
-- [Recharts] (https://recharts.org/en-US/)
-- [React Table] (https://react-table.tanstack.com/)
+- [Kubernetes](https://www.kubernetes.dev/)
+- [Prometheus|PromQL](https://prometheus.io/)
+- [React](https://reactjs.org)
+- [NodeJS|Express](https://expressjs.com/)
+- [Apollo GraphQL](https://www.apollographql.com/)
+- [Recharts](https://recharts.org/en-US/)
+- [React Table](https://react-table.tanstack.com/)
 - [Webpack] 
 - [React Testing Library]
 - [Jest]
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Start by forking and cloning this repo. 
 
-### Prerequisites
-What things you need to install the software and how to install them.
-
+### Prerequisites <a name = "prerequisites"></a>
+- Install the [kubectl](https://kubernetes.io/docs/tasks/tools) command line tools.
+- Host your Kubernetes cluster on a service like [GKE](https://cloud.google.com/kubernetes-engine) or [EKS](https://aws.amazon.com/eks/) or use [MiniKube](https://minikube.sigs.k8s.io/docs/start).
+- Install [the Prometheus server](https://prometheus-operator.dev/docs/prologue/quick-start/) in order to generate your metrics
+  - Save your Prometheus server on the default namespace
+- And that's it! 
 
 ## ✍️ Authors <a name = "authors"></a>
 - [Adda Kridler](https://github.com/addakridler)
