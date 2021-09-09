@@ -3,7 +3,7 @@ import PodTable from './PodTable.jsx';
 import { useTable } from 'react-table';
 import {MDBTable} from 'mdbreact'
 
-const PodInfoTableSetup = ({ podNums, newClick }) => {
+const PodInfoTableSetup = ({ podNums, newClick, clickedArray }) => {
   // if(podNums)
   if (podNums) {
     const podNames = Object.keys(podNums);
@@ -63,7 +63,7 @@ const PodInfoTableSetup = ({ podNums, newClick }) => {
     return (
         <div className='table'>
           <MDBTable scrollY >
-          <PodTable columns={columns} data={pods} newClick={newClick} />
+            <PodTable columns={columns} data={pods} newClick={newClick} clickedArray={clickedArray}/>
           </MDBTable>
         </div>
     );
