@@ -40,7 +40,7 @@ const PodInfoRows = ({
   function changeColorsBack() {
     const rows = document.querySelectorAll('.table-row');
     for (const row of rows) {
-      if (row.style.color === 'orange') row.style.color = 'gray';
+      if (row.style.color === 'orange') row.style.color = "rgb(168, 168, 168)";
     }
   }
 

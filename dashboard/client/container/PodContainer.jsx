@@ -1,3 +1,10 @@
+/*
+ * *****************************************************************************
+ * @description Pod dashboard page container
+ * *****************************************************************************
+ */
+
+
 import React, { useState, useEffect } from 'react';
 import PodMemoryCurrentComponent from '../components/PodMemoryCurrentComponent.jsx';
 import PodCPU from '../components/PodCPU.jsx';
@@ -15,11 +22,11 @@ const PodContainer = () => {
   const [clickedArray, setClickedArray] = useState([]);
   const [timeWindow, setTimeWindow] = useState(21600);
   const [step, setStep] = useState('5m');
-  
+
   // time variables for promQL query range
   const endTime = Math.floor(Date.now() / 1000);
   const startTime = endTime - timeWindow;
-  
+
   // query to graphql server
   const query = `{
     getPodCpu(startTime: "${startTime}", endTime: "${endTime}", step: "${step}") {
@@ -87,7 +94,7 @@ const PodContainer = () => {
         setCalled(false); // reset called to false for updating with fresh data
       });
   }, [timeWindow, step]);
-  
+
   // if data is loaded and data states are set, but called state is false
   if (!isLoading && !called) {
     const podInfoNumbers = {}; // empty object to store pod info with names
@@ -115,7 +122,7 @@ const PodContainer = () => {
       let memPod = podMemorySeries.data.result[i].metric.pod;
       if (podInfoNumbers[memPod]) podInfoNumbers[memPod].memorySeriesValues = podMemorySeries.data.result[i].values;
     }
-    
+
     setPodNums(podInfoNumbers);
     setCalled(true);
   }

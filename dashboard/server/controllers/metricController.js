@@ -1,3 +1,11 @@
+/*
+ * ******************************************************************************************
+ * @description: Controller for node metrics using REST API (not in use, switched to GraphQL)
+ * ******************************************************************************************
+ */
+
+
+
 const fetch = require('node-fetch');
 
 const metricController = {};

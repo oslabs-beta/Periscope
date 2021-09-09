@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Node dashboard page container
+ * *****************************************************************************
+ */
+
 import React, { useState, useEffect } from 'react';
 import Memory from '../components/Memory.jsx';
 import CPU from '../components/CPU.jsx';
@@ -16,14 +22,13 @@ const mainContainerGraphQL = () => {
   const [called, setCalled] = useState(false);
 
   const sixHours = 21600;
-  const endTime = Math.floor(Date.now() / 1000);
-  // const startTime = '1630286575';
-  // const endTime = new Date.now() / 1000;
+  const endTime = Math.floor(Date.now() / 1000);;
   const startTime = endTime - sixHours;
-  
+
 
   const step = '5m';
 
+  //graphQL query
   const query = `{
     getFreeDiskSpace(startTime: "${startTime}", endTime: "${endTime}", step: "${step}") {
       data {
@@ -78,6 +83,7 @@ const mainContainerGraphQL = () => {
     }
   }`;
 
+  //fetch request based on graphQL query
   useEffect(() => {
     fetch('/graphql', {
       method: 'POST',
@@ -102,8 +108,8 @@ const mainContainerGraphQL = () => {
       });
   }, []);
 
+  // if data is loaded and data states are set, but called state is false
   if (!isLoading && !called) {
-    console.log('clusterinfo', clusterInfo);
     const result = [];
     for (let i = 1; i <= clusterInfo.data.result.length; i++) {
       // create nodes 1 through x based on internal Ip addresses
@@ -113,6 +119,7 @@ const mainContainerGraphQL = () => {
     setCalled(true);
   }
 
+  //displays a loading gif if data pull isn't complete yet
   return isLoading ? (
     <img id='loading' src={loading} />
   ) : (

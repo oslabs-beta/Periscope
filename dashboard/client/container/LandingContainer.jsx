@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Landing page container
+ * *****************************************************************************
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/periscopeTextLogoTransparent.png';
