@@ -18,8 +18,6 @@ const style = {
   fontSize: '14px',
 }
 
-// custom hover tooltip for pod cpu chart 
-
 const PodCpuToolTip = props => {
   const { active, payload, label } = props;
   if (!active || !payload) return null;
