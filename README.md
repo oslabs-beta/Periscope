@@ -57,9 +57,7 @@ Engineers can see CPU, disk usage and memory usage across their cluster. </p>
 ## 🎥 Demo <a name = "demo"></a>
 
 <img width=600 height=360 src= "https://i.imgur.com/oN7BDIf.gif">
-<br>
 <img width=600 height=360 src= "https://i.imgur.com/mu9qrZM.gif">
-<br>
 <img width=600 height=360 src= "https://i.imgur.com/rayJYet.gif">
 
 
