@@ -21,7 +21,6 @@
 
 ## 📝 Table of Contents
 - [About](#about)
-  - [Built Using](#built_using)
 - [Getting Started](#getting_started)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
