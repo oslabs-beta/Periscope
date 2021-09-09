@@ -1,8 +1,7 @@
 # Periscope
 
 <p align="center">
-  <a href="getperiscopedashboard.com">
- <img src="https://github.com/oslabs-beta/Periscope/raw/dev/dashboard/client/assets/periscopeLogo.png" alt="Periscope logo"></a>
+ <img src="https://github.com/oslabs-beta/Periscope/raw/dev/dashboard/client/assets/periscopeLogo.png" alt="Periscope logo">
 </p>
 
 <h3 align="center">Periscope Dashboard</h3>
