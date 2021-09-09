@@ -26,7 +26,7 @@ const ClusterInfo = ({ clusterInfo }) => {
       nodes.push(newObj);
     }
     
-      //creates column header for react-table.
+      //creates header titles for react-table and binds them to key in node object. 
     const columns = [
       {
         Header: 'Node Number',
