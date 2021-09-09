@@ -49,7 +49,8 @@ const CPU = (props) => {
       setResults(resultArr);
       setRender(true);
     }
-
+   
+      //create line for CPU data for each node.
     for (let i = 0; i < nodes.length; i++) {
       lines.push(
         <Line
