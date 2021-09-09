@@ -10,12 +10,14 @@ import PodTable from './PodTable.jsx';
 import { useTable } from 'react-table';
 import {MDBTable} from 'mdbreact'
 
+// table to display pod info
+
 const PodInfoTableSetup = ({ podNums, newClick, clickedArray }) => {
-  // if(podNums)
+  
   if (podNums) {
     const podNames = Object.keys(podNums);
-    // component for each node
     const pods = [];
+    // create an object for each pod in podnums with relevant data; store objects in pods array to pass as data to table
     for (let i = 0; i < podNames.length; i++) {
       const newObj = {};
       const podName = podNames[i];
@@ -26,6 +28,7 @@ const PodInfoTableSetup = ({ podNums, newClick, clickedArray }) => {
       pods.push(newObj);
     }
 
+    // columns for pod table 
     const columns = [
       {
         Header: 'Pod#',
@@ -45,27 +48,6 @@ const PodInfoTableSetup = ({ podNums, newClick, clickedArray }) => {
       },
     ];
 
-    //   ];
-    //   // const columns = React.useMemo(
-    //   //   () => [
-    //   //     {
-    //   //       Header: 'Node Name',
-    //   //       accessor: 'nodeName', //
-    //   //     },
-    //   //     {
-    //   //       Header: 'Node Number',
-    //   //       accessor: 'nodeNumber',
-    //   //     },
-    //   //     {
-    //   //       Header: 'Interal Ip',
-    //   //       accessor: 'internal_ip',
-    //   //     },
-    //   //   ],
-    //   //   []
-    //   // );
-
-    //   // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    //   //   useTable({ columns, data });
     return (
         <div className='table'>
           <MDBTable scrollY >
