@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * @description ????????
+ * @description Chart component to render current memory usage of all pods in cluster 
  * *****************************************************************************
  */
 
@@ -19,8 +19,6 @@ import {
 } from 'recharts';
 import PodMemoryTooltip from './PodMemoryTooltip';
 import colors from '../assets/colors';
-
-// component to render current memory usage of all pods in cluster 
 
 const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) => {
   const [result, setResult] = useState([]); // data to pass to the chart
