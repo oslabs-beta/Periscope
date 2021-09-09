@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * @description ????????
+ * @description Populates table with pod information 
  * *****************************************************************************
  */
 
@@ -20,6 +20,7 @@ export default function PodTable({ columns, data, newClick, clickedArray }) {
     data,
   });
 
+  // toggle color of row on click 
   function changeColor(id) {
     const row = document.getElementById(id);
     if (row.style.color === 'orange') {
