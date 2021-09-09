@@ -61,7 +61,6 @@ const PodInfoRows = ({
         className='dropdown-div'
         key={`${i}`}
         onClick={() => {
-          console.log('clicked');
           setTimeWindow(time);
           setClickedArray([]);
           setIsTimeOpen(false);
@@ -81,7 +80,6 @@ const PodInfoRows = ({
         className='dropdown-div'
         key={`${i}`}
         onClick={() => {
-          console.log('clicked');
           setStep(step);
           setClickedArray([]);
           setIsStepOpen(false);

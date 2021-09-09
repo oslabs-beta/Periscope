@@ -28,7 +28,6 @@ const MainDisplay = () => {
       user: name,
       message: message,
     });
-    console.log(result);
   };
 
   //loop through messages and create a Message

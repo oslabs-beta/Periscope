@@ -30,8 +30,7 @@ const PodMemorySeriesComponent = ({ clickedArray }) => {
     setRender(false);
   }
 
-  // console.log('clicked array in podCpu', clickedArray);
-  // console.log('set render', render);
+
 
   if (clickedArray.length > 0) {
     clickedArray[0].memorySeriesValues.forEach((x, i) => {

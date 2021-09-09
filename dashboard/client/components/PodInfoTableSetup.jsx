@@ -16,7 +16,6 @@ const PodInfoTableSetup = ({ podNums, newClick, clickedArray }) => {
     const podNames = Object.keys(podNums);
     // component for each node
     const pods = [];
-    // console.log('nodes', nodes);
     for (let i = 0; i < podNames.length; i++) {
       const newObj = {};
       const podName = podNames[i];

@@ -97,8 +97,6 @@ const mainContainerGraphQL = () => {
       .then((res) => res.json())
       .then((res) => {
         const data = res.data;
-        console.log(data);
-        console.log('data.getNodeCpi', data.getNodeCpu);
         setCPU(data.getNodeCpu);
         setTotalDisk(data.getTotalDiskSpace);
         setFreeDisk(data.getFreeDiskSpace);

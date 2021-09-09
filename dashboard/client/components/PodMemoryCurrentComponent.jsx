@@ -35,7 +35,6 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) 
     const pod = {};
     const podName = podArray[i].metric.pod
     const newPodNumber = podNums[podName]
-    // console.log(newPodNumber)
     if(newPodNumber){
     pod.name = newPodNumber.name;
     pod.value = +((+(podArray[i].value[1]) / 1000000).toFixed(2)) ;
@@ -43,9 +42,7 @@ const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) 
     data.push(pod)}
   }
 
-  // console.log('data: ', data)
    sortedData = data.sort((a,b)=>(a.number > b.number) ? 1 : -1);
-  // console.log('sorted', sortedData)
 
     if (render === false) {
       setResult(sortedData);

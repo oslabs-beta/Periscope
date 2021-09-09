@@ -21,7 +21,6 @@ const style = {
 const MemoryTooltip = props => {
   const { active, payload, label } = props;
   if (!active || !payload) return null;
-  console.log(payload);
 
   return (
   <div className="custom-tooltip" style={style}	>
