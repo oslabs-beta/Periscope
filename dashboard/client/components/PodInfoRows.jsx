@@ -1,6 +1,7 @@
 /*
  * *****************************************************************************
- * @description ????????
+ * @description Information and selection of individual pods to be displayed in PodInfoTable; 
+   functions to select time and step range for time-series queries
  * *****************************************************************************
  */
 
