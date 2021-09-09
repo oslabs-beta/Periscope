@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import lineColors from '../assets/colors';
+/*
+ * *****************************************************************************
+ * @description Component that renders Node CPU chart
+ * *****************************************************************************
+ */
+
 import TimeSeriesTooltip from './TimeSeriesTooltip';
 import {
   LineChart,
@@ -13,6 +19,7 @@ import {
 } from 'recharts';
 
 const DiskUsage = (props) => {
+
   // nodes object ==> name of node: total diskSpace
   const nodes = {};
   const data = [];
@@ -97,7 +104,7 @@ const DiskUsage = (props) => {
         }}
         padding={{right: 0, left: 0}}
         >
-        
+
         <CartesianGrid stroke='grey' />
         <XAxis
           dataKey='time'
@@ -109,7 +116,7 @@ const DiskUsage = (props) => {
           }}
         />
         <Tooltip content={TimeSeriesTooltip}/>
-        <Legend 
+        <Legend
           align='left'
           wrapperStyle={{ paddingLeft: "30px" }}
         />

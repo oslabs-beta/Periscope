@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Header for our dashboard
+ * *****************************************************************************
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/periscope_logo_transparent.png'

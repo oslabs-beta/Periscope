@@ -1,14 +1,19 @@
+/*
+ * *****************************************************************************
+ * @description Component that renders Node cluster info
+ * *****************************************************************************
+ */
+
 import React from 'react';
 import Table from './table.jsx';
 import { useTable } from 'react-table';
 
 const ClusterInfo = ({ clusterInfo }) => {
   if (clusterInfo.data) {
-    console.log(clusterInfo)
     const clusterInfoArr = clusterInfo.data.result;
-    // component for each node
     const nodes = [];
-    // console.log('nodes', nodes);
+
+    //loops through each node and saves the node information in an object then pushes to our results array
     for (let i = 0; i < clusterInfoArr.length; i++) {
       const nodeName = clusterInfoArr[i].metric.node;
       const nodeNumber = 'node' + (i + 1);
@@ -19,22 +24,9 @@ const ClusterInfo = ({ clusterInfo }) => {
       newObj['nodeNumber'] = nodeNumber;
       newObj['internal_ip'] = internal_ip;
       nodes.push(newObj);
-      // nodes.push(
-      //   <Node
-      //     key={i}
-      //     nodeName={nodeName}
-      //     nodeNumber={nodeNumber}
-      //     internal_ip={internal_ip}
-      //     time={time}
-      //   />
-      // );
     }
-    // console.log('nodes', nodes);
 
-    // const data = React.useMemo(() => {
-    //   nodes;
-    // }, []);
-    // console.log('data', data);
+
     const columns = [
       {
         Header: 'Node Number',
@@ -49,26 +41,8 @@ const ClusterInfo = ({ clusterInfo }) => {
         accessor: 'internal_ip',
       },
     ];
-    // const columns = React.useMemo(
-    //   () => [
-    //     {
-    //       Header: 'Node Name',
-    //       accessor: 'nodeName', //
-    //     },
-    //     {
-    //       Header: 'Node Number',
-    //       accessor: 'nodeNumber',
-    //     },
-    //     {
-    //       Header: 'Interal Ip',
-    //       accessor: 'internal_ip',
-    //     },
-    //   ],
-    //   []
-    // );
 
-    // const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    //   useTable({ columns, data });
+
     return (
       <div>
         <h2>Cluster Info</h2>
