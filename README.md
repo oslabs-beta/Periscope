@@ -27,14 +27,17 @@
 - [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
-Periscope is the dashboard solution for monitoring and tracking your Kubernetes pods & nodes. 
-Periscope integrates with a Prometheus server and then displays the core metrics that any engineer needs to understand the state and health of their cluster. 
-Engineers can see CPU, disk usage and memory usage across their cluster. The dashboard makes it easy to see troubling trends thereby providing developers with the information needed to make changes.
+<p> Periscope is the dashboard solution for monitoring and tracking your Kubernetes pods & nodes. </p>
+
+<p> Periscope integrates with a Prometheus server and then displays the core metrics that any engineer needs to understand the state and health of their cluster. 
+Engineers can see CPU, disk usage and memory usage across their cluster. </p>
+
+<p> The dashboard makes it easy to see troubling trends thereby providing developers with the information needed to make changes. </p>
 
 ### ⛏️ Built Using <a name = "built_using"></a>
 - [Kubernetes] (https://www.kubernetes.dev/)
 - [Prometheus] (https://prometheus.io/)
-- [React] (https://reactjs.org/)
+- [React] (https://reactjs.org)
 - [NodeJS/Express](https://expressjs.com/)
 - [Apollo GraphQL] (https://www.apollographql.com/)
 - [Recharts] (https://recharts.org/en-US/)
