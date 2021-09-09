@@ -23,7 +23,7 @@
 ## 📝 Table of Contents
 - [About](#about)
    - [Built Using](#built_using)
-- [Demo] (#demo)
+- [Demo](#demo)
 - [Getting Started](#getting_started)
    - [Prerequisites](#prerequisites)
 - [Authors](#authors)
