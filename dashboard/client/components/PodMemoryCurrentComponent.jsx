@@ -20,32 +20,34 @@ import {
 import PodMemoryTooltip from './PodMemoryTooltip';
 import colors from '../assets/colors';
 
+// component to render current memory usage of all pods in cluster 
 
 const PodMemoryCurrentComponent = ({ podMemoryCurrent, podNums, clickedArray }) => {
-  const [result, setResult] = useState([]);
-  const [render, setRender] = useState(false);
+  const [result, setResult] = useState([]); // data to pass to the chart
+  const [render, setRender] = useState(false); // render state to allow recharts animation but prevent constant re-rendering
   let sortedData = []
 
+  // check if current memory data has been received from query AND if podNums list contains pods
+  if(podMemoryCurrent.data && Object.keys(podNums).length > 0) {
+    
+    const data = [];
+    const podArray = podMemoryCurrent.data.result;
+    for (let i = 0; i < podArray.length; i++) {
+      const pod = {}; // create objects for each pod with relevant data from current memory query and pod number from podNums
+      const podName = podArray[i].metric.pod;
+      const newPodNumber = podNums[podName];
+      if(newPodNumber) { // if pod exists in podNums (doesn't have a null node), assign values and push to data array
+        pod.name = newPodNumber.name; 
+        pod.value = +((+(podArray[i].value[1]) / 1000000).toFixed(2)) ;
+        pod.number = newPodNumber.number
+        data.push(pod)
+      } 
+    }
 
-
-  if(podMemoryCurrent.data && Object.keys(podNums).length > 0){
-  const data = [];
-  const podArray = podMemoryCurrent.data.result;
-  for (let i = 0; i < podArray.length; i++) {
-    const pod = {};
-    const podName = podArray[i].metric.pod
-    const newPodNumber = podNums[podName]
-    if(newPodNumber){
-    pod.name = newPodNumber.name;
-    pod.value = +((+(podArray[i].value[1]) / 1000000).toFixed(2)) ;
-    pod.number = newPodNumber.number
-    data.push(pod)}
-  }
-
-   sortedData = data.sort((a,b)=>(a.number > b.number) ? 1 : -1);
+    sortedData = data.sort((a,b)=>(a.number > b.number) ? 1 : -1); // sort data array by pod number
 
     if (render === false) {
-      setResult(sortedData);
+      setResult(sortedData); // set results with sorted data array 
       setRender(true);
     }
   }
