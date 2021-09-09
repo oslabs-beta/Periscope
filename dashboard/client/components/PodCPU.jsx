@@ -48,7 +48,8 @@ const PodCPU = ({ clickedArray, timeWindow, step }) => {
           ).toFixed(2);
         }
         resultArray.push(dataPoint); // results array contains datapoint objects 
-
+    });
+        
     if (render === false) {
       setResults(resultArray);
       setClickedLength(clickedArray.length);
