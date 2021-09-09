@@ -27,7 +27,7 @@
 - [Getting Started](#getting_started)
    - [Prerequisites](#prerequisites)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+- [Coming Soon](#coming_soon)
 
 ## 🧐 About <a name = "about"></a>
 <p> Periscope is the dashboard solution for monitoring and tracking your Kubernetes pods & nodes. </p>
@@ -64,13 +64,13 @@ Start by forking and cloning this repo.
 - Host your Kubernetes cluster on a service like [GKE](https://cloud.google.com/kubernetes-engine) or [EKS](https://aws.amazon.com/eks/) or use [MiniKube](https://minikube.sigs.k8s.io/docs/start).
 - Install [the Prometheus server](https://prometheus-operator.dev/docs/prologue/quick-start/) in order to generate your metrics
   - Save your Prometheus server on the default namespace
-- And that's it! 
+- Then build and run the dashboard! 
 
 ## ✍️ Authors <a name = "authors"></a>
-- [Adda Kridler](https://github.com/addakridler)
-- [Junie Hou](https://github.com/selilac)
-- [Ronke Oyekunle](https://github.com/ronke11)
-- [Shawn Convery](https://github.com/smconvery)
+- Adda Kridler: [Github](https://github.com/addakridler) | [LinkedIn](https://www.linkedin.com/in/adda-kridler-23028887/)
+- Junie Hou: [Github](https://github.com/selilac) | [LinkedIn](https://www.linkedin.com/in/juniehou/)
+- Ronke Oyekunle: [Github](https://github.com/ronke11) | [LinkedIn](https://www.linkedin.com/in/royekunle)
+- Shawn Convery: [Github](https://github.com/smconvery) | [LinkedIn](https://www.linkedin.com/in/shawn-convery-459b79167/)
 
 ## 🎉 Coming Soon! <a name = "coming_soon"></a>
 - Set email / slack alerts for major changes in metrics
