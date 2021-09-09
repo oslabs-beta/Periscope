@@ -17,6 +17,7 @@
 
 <p align="center"> Periscope is the dashboard solution for monitoring and tracking your Kubernetes pods & nodes.
     <br> 
+  <a href="https://www.periscopedashboard.io/"><strong>Visit us at periscopedashboard.io </strong></a>
 </p>
 
 ## 📝 Table of Contents
@@ -36,11 +37,6 @@ Engineers can see CPU, disk usage and memory usage across their cluster. </p>
 
 <p> The dashboard makes it easy to see troubling trends thereby providing developers with the information needed to make changes. </p>
 
-## 🎥 Demo <a name = "demo"></a>
-
-<b> PUT IN GIF OF DASHBOARDD!! </b>
-
-
 ### ⛏️ Built Using <a name = "built_using"></a>
 - [Kubernetes](https://www.kubernetes.dev/)
 - [Prometheus|PromQL](https://prometheus.io/)
@@ -49,9 +45,16 @@ Engineers can see CPU, disk usage and memory usage across their cluster. </p>
 - [Apollo GraphQL](https://www.apollographql.com/)
 - [Recharts](https://recharts.org/en-US/)
 - [React Table](https://react-table.tanstack.com/)
-- [Webpack] 
-- [React Testing Library]
-- [Jest]
+- [Webpack](https://webpack.js.org/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/)
+- [Jest](https://jestjs.io/)
+
+
+
+## 🎥 Demo <a name = "demo"></a>
+
+<b> PUT IN GIF OF DASHBOARDD!! </b>
+
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 Start by forking and cloning this repo. 
