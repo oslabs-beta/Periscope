@@ -31,13 +31,7 @@ Periscope is the dashboard solution for monitoring and tracking your Kubernetes 
 Periscope integrates with a Prometheus server and then displays the core metrics that any engineer needs to understand the state and health of their cluster. 
 Engineers can see CPU, disk usage and memory usage across their cluster. The dashboard makes it easy to see troubling trends thereby providing developers with the information needed to make changes.
 
-## 🏁 Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-What things you need to install the software and how to install them.
-
-## ⛏️ Built Using <a name = "built_using"></a>
+### ⛏️ Built Using <a name = "built_using"></a>
 - [Kubernetes] (https://www.kubernetes.dev/)
 - [Prometheus] (https://prometheus.io/)
 - [React] (https://reactjs.org/)
@@ -48,6 +42,13 @@ What things you need to install the software and how to install them.
 - [Webpack] 
 - [React Testing Library]
 - [Jest]
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+
+### Prerequisites
+What things you need to install the software and how to install them.
+
 
 ## ✍️ Authors <a name = "authors"></a>
 - [Adda Kridler](https://github.com/addakridler)
