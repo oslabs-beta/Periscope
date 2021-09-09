@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Custom tooltip for hover information
+ * *****************************************************************************
+ */
+
 import React from 'react';
 import colors from '../assets/colors';
 
@@ -15,7 +21,6 @@ const style = {
 const TimeSeriesTooltip = props => {
   const { active, payload, label } = props;
   if (!active || !payload) return null;
-  console.log(payload)
 
   const nodeEntries = [];
   for (let i = 0; i < payload.length; i++) {

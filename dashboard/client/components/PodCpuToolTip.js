@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Custom tooltip that provides hover information
+ * *****************************************************************************
+ */
+
 import React from 'react';
 import colors from '../assets/colors';
 

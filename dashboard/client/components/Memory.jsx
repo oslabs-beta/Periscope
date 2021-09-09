@@ -1,3 +1,10 @@
+/*
+ * *****************************************************************************
+ * @description Component that renders Node memory usage
+ * *****************************************************************************
+ */
+
+
 import React, { useState, useEffect } from 'react';
 import {
   BarChart,
@@ -15,25 +22,27 @@ import colors from '../assets/colors';
 
 
 const Memory = ({ nodeMemory, nodeNums }) => {
-  // if (!nodeMemory.data) return null;
   const resultArr = [];
   const [result, setResult] = useState([]);
   const [render, setRender] = useState(false);
   if (nodeMemory.data) {
     const nodes = nodeMemory.data.result;
     nodes.forEach((node, i) => {
-      // match length of instance to length of ip addresses in node list
+      // match length of instance to length of ip addresses in reference node list
       const len = nodeNums[0].length;
       const internal_ip = node.metric.instance.slice(0, len);
       // find position of node in reference list
       const position = nodeNums.findIndex((ip) => ip === internal_ip);
       const dataPoint = {};
 
+
+      // builds a datapoint that has the correct node # & the % memory used data
       dataPoint.node = 'node' + (position + 1);
       dataPoint.ip = internal_ip;
       dataPoint.percentageMemoryUsed = (parseFloat(node.value[1])*100).toFixed(2);
       resultArr[position] = dataPoint;
     });
+      //prevents recharts.js from causing infinite loop of re-renderes
     if (render === false) {
       setResult(resultArr);
       setRender(true);

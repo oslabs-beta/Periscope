@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LandingContainer from './container/landingContainer.jsx';
+import LandingContainer from './container/LandingContainer.jsx';
 import NodeContainer from './container/NodeContainer.jsx';
 import PodContainer from './container/PodContainer.jsx';
 import Header from './components/Header.jsx';

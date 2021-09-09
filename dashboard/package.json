@@ -1,7 +1,7 @@
 {
-  "name": "periscope-app-dash",
+  "name": "periscope-dashboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "The Periscope dashboard monitors Kubernetes clusters",
   "main": "index.js",
   "scripts": {
     "test": "jest",

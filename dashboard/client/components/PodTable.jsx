@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Populates table with pod information 
+ * *****************************************************************************
+ */
+
 import React from 'react';
 import { useTable } from 'react-table';
 import lineColors from '../assets/colors';
@@ -14,10 +20,11 @@ export default function PodTable({ columns, data, newClick, clickedArray }) {
     data,
   });
 
+  // toggle color of row on click 
   function changeColor(id) {
     const row = document.getElementById(id);
     if (row.style.color === 'orange') {
-      row.style.color = 'gray';
+      row.style.color = "rgb(168, 168, 168)";
     } else row.style.color = 'orange';
   }
 

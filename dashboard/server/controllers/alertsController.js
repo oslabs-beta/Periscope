@@ -1,3 +1,10 @@
+/*
+ * *****************************************************************************
+ * @description: WIP --> Controller for alert manager
+ * *****************************************************************************
+ */
+
+
 const fetch = require('node-fetch');
 
 const alertsController = {};

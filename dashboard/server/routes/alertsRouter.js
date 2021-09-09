@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description: WIP --> Router for alert manager
+ * *****************************************************************************
+ */
+
 const express = require('express');
 const alertsRouter = express.Router();
 const alertsController = require('../controllers/alertsController');

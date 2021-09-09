@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Linechart component to render time-series data of memory usage of selected pods
+ * *****************************************************************************
+ */
+
 import React, { useState } from 'react';
 import {
   LineChart,
@@ -13,38 +19,36 @@ import PodMemorySeriesTooltip from './PodMemorySeriesTooltip';
 import colors from '../assets/colors';
 
 const PodMemorySeriesComponent = ({ clickedArray }) => {
-  const [results, setResults] = useState([]);
-  const [render, setRender] = useState(false);
+  const [results, setResults] = useState([]); // data to pass to chart component
+  const [render, setRender] = useState(false); // render to track recharts animation without constant re-rendering
   const [clickedLength, setClickedLength] = useState(0);
   const lines = [];
   const resultArray = [];
 
-  if (clickedLength !== clickedArray.length) {
+  if (clickedLength !== clickedArray.length) { // if the length of the clickedarray changes allow re-render with new clickedarray
     if (clickedArray.length === 0) setClickedLength(0);
     setRender(false);
   }
 
-  // console.log('clicked array in podCpu', clickedArray);
-  // console.log('set render', render);
+
 
   if (clickedArray.length > 0) {
     clickedArray[0].memorySeriesValues.forEach((x, i) => {
-      const dataPoint = {};
+      const dataPoint = {}; // create datapoint object for each time/memory value of the first pod in clickedarray
       let time = new Date(x[0] * 1000);
       dataPoint.time = time.toLocaleString();
 
-      for (let j = 0; j < clickedArray.length; j++) {
+      for (let j = 0; j < clickedArray.length; j++) { // add values for other pods in the clickedarray
         dataPoint[clickedArray[j].name] = +(
           parseFloat(clickedArray[j].memorySeriesValues[i][1]) / 1000000
         ).toFixed(4);
       }
-      resultArray.push(dataPoint);
+      resultArray.push(dataPoint); // push each datapoint to the resultarray
     });
 
     if (render === false) {
-      // console.log(resultArray);
-      setResults(resultArray);
-      setClickedLength(clickedArray.length);
+      setResults(resultArray); // set results with resultarray
+      setClickedLength(clickedArray.length); // update clickedlength state to current clickedarray length
       setRender(true);
     }
 

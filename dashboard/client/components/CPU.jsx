@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Component that renders Node CPU chart
+ * *****************************************************************************
+ */
+
 import React, { useState } from 'react';
 import {
   LineChart,
@@ -20,17 +26,20 @@ const CPU = (props) => {
   if (props.cpu.data) {
     const nodes = props.cpu.data.result;
     const nodeNums = props.nodeNums;
+
+    // establishes a for loop based on length of first node
     nodes[0].values.forEach((x, i) => {
       const dataPoint = {};
       let current = new Date(x[0] * 1000);
       dataPoint.time = current.toLocaleString();
 
       for (let j = 0; j < nodes.length; j++) {
-      // match length of instance to length of ip addresses in node list
+      // match length of instance to length of ip addresses in our reference node list
        const len = nodeNums[0].length;
        const internal_ip = nodes[j].metric.instance.slice(0, len);
        // find position of node in reference list
        const position = nodeNums.findIndex((ip) => ip === internal_ip);
+       //create a datapoint with the correct node# (from reference list) and the relevant value
         dataPoint[`node${position + 1}`] = +(parseFloat(nodes[j].values[i][1])*100).toFixed(
           2);
       }
@@ -40,7 +49,8 @@ const CPU = (props) => {
       setResults(resultArr);
       setRender(true);
     }
-
+   
+      //create line for CPU data for each node.
     for (let i = 0; i < nodes.length; i++) {
       lines.push(
         <Line
@@ -81,7 +91,7 @@ const CPU = (props) => {
           }}
         />
         <Tooltip content={TimeSeriesTooltip}/>
-        <Legend 
+        <Legend
           align='left'
           wrapperStyle={{ paddingLeft: "30px" }}
         />

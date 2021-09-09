@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description React table for Node cluster info
+ * *****************************************************************************
+ */
+
 import React from 'react';
 import { useTable } from 'react-table';
 import lineColors from '../assets/colors';
@@ -13,6 +19,8 @@ export default function Table({ columns, data }) {
     columns,
     data,
   });
+
+  
   return (
     <div>
       <table {...getTableProps()}>

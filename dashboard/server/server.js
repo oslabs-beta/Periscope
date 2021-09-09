@@ -8,9 +8,6 @@ const { ApolloServer } = require('apollo-server-express');
 const schema = require('./graphQL/schemas.js');
 
 
-
-// app.use('/metrics', metricsRouter);
-
 let apollo = null;
 async function startApolloServer(schema) {
   const app = express();
@@ -29,16 +26,16 @@ async function startApolloServer(schema) {
       .status(200)
       .sendFile(path.resolve(__dirname, '../client/index.html'));
   });
-  
+
   app.use('/*', (req, res) => {
     return res.sendFile(path.resolve(__dirname, '../client/index.html'));}
   );
-  
+
    app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}...`);
     console.log(`Server gql path is ${apollo.graphqlPath}`);
   });
-  
+
 }
 
 startApolloServer(schema);

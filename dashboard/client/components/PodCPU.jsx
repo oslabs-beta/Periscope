@@ -1,3 +1,9 @@
+/*
+ * *****************************************************************************
+ * @description Component that renders Pod CPU usage chart
+ * *****************************************************************************
+ */
+
 import React, { useState } from 'react';
 import {
   LineChart,
@@ -21,25 +27,27 @@ const PodCPU = ({ clickedArray, timeWindow, step }) => {
   const lines = [];
   const resultArray = [];
 
-  
-  if (clickedLength !== clickedArray.length) {
+  // clickedArray is the user selected list of pods, passed down from Pod Container
+
+  if (clickedLength !== clickedArray.length) { // use clickedLength to trigger re-render when new clicked array is received
     if (clickedArray.length === 0) setClickedLength(0);
     setRender(false);
   }
 
   if (clickedArray.length > 0) {
+    // create datapoint objects for each point in time series with values for first pod in clicked array
       clickedArray[0].cpuValues.forEach((x, i) => {
         const dataPoint = {};
         let time = new Date(x[0] * 1000);
         dataPoint.time = time.toLocaleString();
 
+        // add values for other pods
         for (let j = 0; j < clickedArray.length; j++) {
           dataPoint[clickedArray[j].name] = +(
             parseFloat(clickedArray[j].cpuValues[i][1]) * 100
           ).toFixed(2);
         }
-        resultArray.push(dataPoint);
-      });
+        resultArray.push(dataPoint); // results array contains datapoint objects 
 
     if (render === false) {
       setResults(resultArray);

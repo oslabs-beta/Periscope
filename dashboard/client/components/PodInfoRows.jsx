@@ -1,3 +1,11 @@
+/*
+ * *****************************************************************************
+ * @description Information and selection of individual pods to be displayed in PodInfoTable; 
+   functions to select time and step range for time-series queries
+ * *****************************************************************************
+ */
+
+
 import React, { useState } from 'react';
 import PodInfoTableSetup from './PodInfoTableSetup.jsx';
 
@@ -8,58 +16,36 @@ const PodInfoRows = ({
   setStep,
   setTimeWindow,
 }) => {
-  const [isTimeOpen, setIsTimeOpen] = useState(false);
-  const [isStepOpen, setIsStepOpen] = useState(false);
+  const [isTimeOpen, setIsTimeOpen] = useState(false); // state for time range dropdown
+  const [isStepOpen, setIsStepOpen] = useState(false); // state for step range dropdown
 
-  // on click function for pod names list to set clickedArray in podContainer
+  // on click function to select pods to add to clickedArray in podContainer
   const newClick = (arg) => {
     let found = false;
-    const newClickedArray = clickedArray.slice();
+    const newClickedArray = clickedArray.slice(); // copy of current clickedArray to update
     for (let i = 0; i < newClickedArray.length; i++) {
-      if (newClickedArray[i].podName === arg) {
+      if (newClickedArray[i].podName === arg) { // if selected pod is already in clickedArray, remove it
         newClickedArray.splice(i, 1);
         setClickedArray(newClickedArray);
         found = true;
         break;
       }
     }
-    if (!found) {
+    if (!found) { // if selected pod is not in clickedArray, add it 
       newClickedArray.push(podNums[arg]);
       setClickedArray(newClickedArray);
     }
   };
 
-  // create list of pod names
-  // const podNames = Object.entries(podNums);
-  // const podList = [];
-  // for (let i = 0; i < podNames.length; i++) {
-  //   let pod = podNames[i][1];
-  //   podList.push(
-  //     <li
-  //       style={{ "list-style-type": "none" }}
-  //       onClick={() => {
-  //         newClick(pod.podName);
-  //       }}
-  //       key={i}>
-  //       {pod.name} {pod.podName}
-  //     </li>
-  //   );
-  // }
-
-  /* -----------------------------------------------------------------------------------------
-  functionality to change time and step range - 
-  to disable functionality: 
-  comment out this section and div w/ id of 'dropdowns' in podInfoRows render
-  comment out TimeWindow and Step state added to podcontainer */
-
+  // changes all colors of pods back to gray (unselects) once the time-range or time-step is changed
   function changeColorsBack() {
     const rows = document.querySelectorAll('.table-row');
     for (const row of rows) {
-      if (row.style.color === 'orange') row.style.color = 'gray';
+      if (row.style.color === 'orange') row.style.color = "rgb(168, 168, 168)";
     }
   }
 
-  //time range variables
+  //time range variables for time range selection
   const oneHour = 3600;
   const sixHours = 21600;
   const twelveHours = 43200;
@@ -76,7 +62,6 @@ const PodInfoRows = ({
         className='dropdown-div'
         key={`${i}`}
         onClick={() => {
-          console.log('clicked');
           setTimeWindow(time);
           setClickedArray([]);
           setIsTimeOpen(false);
@@ -96,7 +81,6 @@ const PodInfoRows = ({
         className='dropdown-div'
         key={`${i}`}
         onClick={() => {
-          console.log('clicked');
           setStep(step);
           setClickedArray([]);
           setIsStepOpen(false);
@@ -107,6 +91,7 @@ const PodInfoRows = ({
     );
   });
 
+  // functions to toggle time and step dropdowns 
   const toggleStep = () => {
     if (isTimeOpen) setIsTimeOpen(false);
     isStepOpen ? setIsStepOpen(false) : setIsStepOpen(true);
@@ -117,7 +102,7 @@ const PodInfoRows = ({
     isTimeOpen ? setIsTimeOpen(false) : setIsTimeOpen(true);
   };
 
-  // ------------------------------------------------------------------------------------------
+  
 
   return (
     <div className='pod-info-rows'>
@@ -153,8 +138,6 @@ const PodInfoRows = ({
           </button>
         </div>
       </div>
-      {/* {' '}
-      <ul>{podList}</ul>{' '} */}
       <div>
         <PodInfoTableSetup
           podNums={podNums}
