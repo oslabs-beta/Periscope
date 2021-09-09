@@ -13,7 +13,7 @@ const ClusterInfo = ({ clusterInfo }) => {
     const clusterInfoArr = clusterInfo.data.result;
     const nodes = [];
 
-    //loops through each node and saves the node information in an object then pushes to our results array
+    //loops through each node and saves the node information in an object then pushes to an array. This data will be passed to react-table.
     for (let i = 0; i < clusterInfoArr.length; i++) {
       const nodeName = clusterInfoArr[i].metric.node;
       const nodeNumber = 'node' + (i + 1);
