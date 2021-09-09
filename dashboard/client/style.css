@@ -29,12 +29,10 @@ h2 {
 }
 
 .header {
-  background-color: #1f1b24;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 30px;
-  border-bottom: .5px solid #121212;
   margin: 0px;
   padding: 10px;
 }
