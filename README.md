@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://github.com/oslabs-beta/Periscope/raw/dev/dashboard/client/assets/periscopeLogo.png" alt="Periscope logo"></a>
+ <img src="https://github.com/oslabs-beta/Periscope/raw/dev/dashboard/client/assets/periscopeLogo.png" alt="Periscope logo"></a>
 </p>
 
 <h3 align="center">Periscope Dashboard</h3>
@@ -21,10 +21,8 @@
 
 ## 📝 Table of Contents
 - [About](#about)
+  - [Built Using](#built_using)
 - [Getting Started](#getting_started)
-- [Built Using](#built_using)
-- [Contributing](../CONTRIBUTING.md)
-- [TODO](../TODO.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
