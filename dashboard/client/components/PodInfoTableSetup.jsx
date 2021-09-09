@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * @description ????????
+ * @description Table to display pod info
  * *****************************************************************************
  */
 
@@ -10,7 +10,7 @@ import PodTable from './PodTable.jsx';
 import { useTable } from 'react-table';
 import {MDBTable} from 'mdbreact'
 
-// table to display pod info
+
 
 const PodInfoTableSetup = ({ podNums, newClick, clickedArray }) => {
   
