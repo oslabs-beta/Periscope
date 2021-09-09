@@ -42,6 +42,7 @@ const Memory = ({ nodeMemory, nodeNums }) => {
       dataPoint.percentageMemoryUsed = (parseFloat(node.value[1])*100).toFixed(2);
       resultArr[position] = dataPoint;
     });
+      //prevents recharts.js from causing infinite loop of re-renderes
     if (render === false) {
       setResult(resultArr);
       setRender(true);
