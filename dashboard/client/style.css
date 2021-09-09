@@ -1,3 +1,25 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #121212;
+  color: gray;
+  margin: 0px;
+}
+
+button {
+  background-color: #0e4f8c;
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
+  padding: 5px 10px;
+  margin: 5px;
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+}
+
 .landing {
   display: flex;
   flex-direction: column;
@@ -6,29 +28,96 @@
   height: 100vh;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  margin: 0px;
+  padding: 10px;
+}
 
 .main-container {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-body {
-  background-color: #121212;
-  color: gray;
-}
-
-button {
-  background-color: white;
-}
-
 .components {
-  border-color: 1f1b24;
+  border-color: #1f1b24;
   margin: 3px;
   border-radius: 10px;
   background-color: #1f1b24;
   text-align: center;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+  margin-right: 30px;
+}
+
+.dropdowns button {
+  background-color: #ff8505;
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.dropdown-menu {
+  /* border-radius: 0px 0px 5px 5px; */
+  background-color: gray;
+  opacity: 0.9;
+  position: absolute;
+  z-index: 2;
+  margin: 0px 5px 5px;
+}
+
+.dropdown-item {
+  font-weight: bold; 
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown-div {
+  padding: 5px;
+  color: black;
+  font-weight: bold;
+}
+
+.dropdown-div:hover {
+  background-color: whitesmoke;
+}
+.dropdown-div:active {
+  color: #ff8505;
+}
+
+#timeMenu {
+  width: 95.33px;
+}
+
+#stepMenu {
+  width: 48.89px;
+}
+
+#podInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pod-info-rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 750px;
+}
+
+.pod-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .chart-container {
@@ -37,6 +126,7 @@ button {
 .table {
   display: flex;
   justify-content: center;
+  padding-bottom: 20px;
 }
 
 td {
@@ -55,9 +145,38 @@ tr > th {
   background-color: #1f1b24;
   padding-bottom: 10px;
 }
+.table-row {
+  cursor: pointer;
+}
+.table-row:hover {
+  color: #0e4f8c;
+}
+
+.column1 {
+  width: 300px;
+  text-overflow: scroll; 
+  overflow: hidden;
+}
+.column3 {
+  width: 300px;
+  text-overflow: scroll; 
+  overflow: hidden;
+}
+
+.table {
+  margin: 0px 15px;
+}
+.pod-table td {
+  padding: 5px;
+  font-size: 12px;
+}
+.pod-table th {
+  font-size: 12px;
+  padding: 5px;
+}
 
 .recharts-wrapper {
-  margin : 0 auto;
+  margin: 0 auto;
 }
 
 #CPU {
@@ -73,6 +192,18 @@ tr > th {
 }
 #memory {
   width: 500px;
+}
+#logo {
+  width: 75px;
+  margin-right: -35px;
+  margin-left: -5px;
+}
+
+#podMemory {
+  padding-right: 25px;
+}
+#podCpu {
+  padding-right: 25px;
 }
 
 #loading {
@@ -96,4 +227,21 @@ tr > th {
     width: 750px;
     order: 1;
   }
+  #podInfo {
+    order: 0;
+  }
+  #podCpu {
+    width: 750px;
+    order: 1;
+  }
+  #podMemory {
+    width: 750px;
+    order: 2;
+  }
+  #podMemoryBars {
+    order: 3;
+  }
+  
+  
+
 }

@@ -1,19 +1,31 @@
+/*
+ * ******************************************************************************************
+ * @description: Controller that activates our Kubernetes portforwarding
+ * ******************************************************************************************
+ */
+
 const fetch = require('node-fetch');
 const { spawn } = require('child_process');
-// sets equal to default prometheus server URL
-const promURL = 'http://127.0.0.1:9090/api/v1/';
-// const axios = require('axios');
 const portController = {};
 
 
 //boolean that determines if the port is open
 let isPromUp = false;
+let isAlertUp = false;
 
 
-//sets up port forwarding on prometheus server so we can grab data
 portController.portForward =  async (req, res, next) => {
   try {
-    const process =  await spawn('kubectl', ['--namespace=default', 'port-forward', 'prometheus-prometheus-kube-prometheus-prometheus-0', '9090'])
+    //sets up port forwarding on prometheus server so we can grab data
+    const process =  await spawn('kubectl', ['--namespace=default', 'port-forward', 'prometheus-prometheus-kube-prometheus-prometheus-0', '9090']);
+
+    // sets up portforwarding for alert manager
+    const process2 = spawn('kubectl', [
+      '--namespace=default',
+      'port-forward',
+      'services/alertmanager-operated',
+      '9093',
+    ])
 
     await process.stdout.on('data', data => {
       console.log(`stdout: ${data}`);
@@ -26,24 +38,19 @@ portController.portForward =  async (req, res, next) => {
       console.log(`stderr: ${data}`);
     });
 
-    await process.on('close', (code) => {
-      // if (code === 1) console.log('PROMETHEUS ALREADY IN USE NUM NUM');
+    await process.on('close', (code)  => {
       console.log(`child process exited with code ${code}`);
       if (code === 1) {isPromUp = true;
       res.locals.promUp = isPromUp;
       console.log('child process res.locals.promUp: ', res.locals.promUp)
       }
     });
+
     console.log('returning next')
     return next();
-    // return next();
   } catch (err) {
     console.log(err);
-    // return next(err);
   }
 };
-
-
-
 
 module.exports = portController;

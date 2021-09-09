@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * @description React table for Node cluster info
+ * @description Populates table with pod information 
  * *****************************************************************************
  */
 
@@ -8,7 +8,7 @@ import React from 'react';
 import { useTable } from 'react-table';
 import lineColors from '../assets/colors';
 
-export default function Table({ columns, data }) {
+export default function PodTable({ columns, data, newClick, clickedArray }) {
   const {
     getTableProps, // table props from react-table
     getTableBodyProps, // table body props from react-table
@@ -20,9 +20,16 @@ export default function Table({ columns, data }) {
     data,
   });
 
-  
+  // toggle color of row on click 
+  function changeColor(id) {
+    const row = document.getElementById(id);
+    if (row.style.color === 'orange') {
+      row.style.color = "rgb(168, 168, 168)";
+    } else row.style.color = 'orange';
+  }
+
   return (
-    <div>
+    <div className='pod-table'>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -37,11 +44,18 @@ export default function Table({ columns, data }) {
           {rows.map((row, index) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr
+                className='table-row'
+                id={index}
+                {...row.getRowProps()}
+                onClick={() => changeColor(index)}>
                 {row.cells.map((cell, i) => {
                   return (
                     <td
-                      style={{ color: lineColors[index] }}
+                      className={`column${i}`}
+                      onClick={() => {
+                        newClick(row.original.podName);
+                      }}
                       {...cell.getCellProps()}>
                       {cell.render('Cell')}
                     </td>

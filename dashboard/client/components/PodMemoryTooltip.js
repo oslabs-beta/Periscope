@@ -1,6 +1,6 @@
 /*
  * *****************************************************************************
- * @description Custom tooltip that provides hover information
+ * @description Custom tooltip for hover information
  * *****************************************************************************
  */
 
@@ -18,17 +18,18 @@ const style = {
   fontSize: '14px',
 }
 
-const MemoryTooltip = props => {
+const PodMemoryTooltip = props => {
   const { active, payload, label } = props;
   if (!active || !payload) return null;
+
 
   return (
   <div className="custom-tooltip" style={style}	>
     <p style={{margin: '0px'}}>
-      {payload[0].value}%
+      {payload[0].payload.name}: {payload[0].value}MB
     </p>
   </div>
   )
 }
 
-export default MemoryTooltip;
+export default PodMemoryTooltip;

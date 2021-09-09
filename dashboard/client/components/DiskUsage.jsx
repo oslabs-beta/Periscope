@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import lineColors from '../assets/colors';
+/*
+ * *****************************************************************************
+ * @description Component that renders Node CPU chart
+ * *****************************************************************************
+ */
+
 import TimeSeriesTooltip from './TimeSeriesTooltip';
 import {
   LineChart,
@@ -13,6 +19,7 @@ import {
 } from 'recharts';
 
 const DiskUsage = (props) => {
+
   // nodes object ==> name of node: total diskSpace
   const nodes = {};
   const data = [];
@@ -64,12 +71,14 @@ const DiskUsage = (props) => {
         data[k][`node${position + 1}`] = (((totalDisk - freeDiskSpace) / totalDisk)*100).toFixed(2);
       }
     }
-
+      //prevents recharts.js from creating infinite loop with re-renders.
     if (render === false) {
       setDiskUsage(data);
       setRender(true);
     }
 
+      //adds a line in the graph for each node with total disk usage over time.
+    
     for (let i = 0; i < total.length; i++) {
       lines.push(
         <Line
@@ -97,7 +106,7 @@ const DiskUsage = (props) => {
         }}
         padding={{right: 0, left: 0}}
         >
-        
+
         <CartesianGrid stroke='grey' />
         <XAxis
           dataKey='time'
@@ -109,7 +118,7 @@ const DiskUsage = (props) => {
           }}
         />
         <Tooltip content={TimeSeriesTooltip}/>
-        <Legend 
+        <Legend
           align='left'
           wrapperStyle={{ paddingLeft: "30px" }}
         />
