@@ -25,8 +25,8 @@ const ClusterInfo = ({ clusterInfo }) => {
       newObj['internal_ip'] = internal_ip;
       nodes.push(newObj);
     }
-
-
+    
+      //creates column header for react-table.
     const columns = [
       {
         Header: 'Node Number',
