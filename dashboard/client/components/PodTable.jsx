@@ -24,7 +24,7 @@ export default function PodTable({ columns, data, newClick, clickedArray }) {
   function changeColor(id) {
     const row = document.getElementById(id);
     if (row.style.color === 'orange') {
-      row.style.color = "rgb(168, 168, 168)";
+      row.style.color = "gray";
     } else row.style.color = 'orange';
   }
 
